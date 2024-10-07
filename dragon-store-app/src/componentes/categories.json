@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "title":"Remeras",
+        "image":"https://i.postimg.cc/7665XbrL/images.jpg"
+    },
+    {
+        "id":2,
+        "title":"Buzos",
+        "image":"https://i.postimg.cc/5Nw8XY4c/BuzoDb.jpg"
+    },
+    {
+        "id":3,
+        "title":"Anillos",
+        "image":"https://i.postimg.cc/rwNGPd3G/anilloDB.jpg"
+    },
+    {
+        "id":4,
+        "title":"Medias",
+        "image":"https://i.postimg.cc/x8mMyqLz/MediasDB.jpg"
+    }
+]
