@@ -1,24 +1,23 @@
-import { StyleSheet,View,Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { colores } from "../../global/colors";
 
-const Flatcard =({children,style})=>{
-return(
-    <View style={{...styles.cardContainer,...style}}>
-     {children}   
-    </View>
-)
+const FlatCard = ({ children, style }) => {
+    return (
+        <View style={{ ...styles.cardContainer, ...style }}>
+            {children}
+        </View>
+    );
+};
 
-}
-
-export default Flatcard
+export default FlatCard;
 
 const styles = StyleSheet.create({
-    cardContainer:{
+    cardContainer: {
         backgroundColor: colores.blancoCrema,
-        shadowColor:colores.negro,
-        shadowOpacity:1,
-        shadowRadius:1,
-        shadowOffset:{width:3,height:5},
-        elevation:5
+        shadowColor: colores.negro,
+        shadowOpacity: 1,
+        shadowRadius: 1,
+        shadowOffset: { width: 3, height: 5 },
+        elevation: 5
     }
-})
+});
