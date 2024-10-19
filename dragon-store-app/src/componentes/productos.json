@@ -12,7 +12,7 @@
             "Clasica",
             "Oscura"
         ],
-        "Imagen": "https://i.postimg.cc/7665XbrL/images.jpg"
+        "Imagen": "https://i.postimg.cc/Pr2fBp39/images-removebg-preview.png"
     },
     {
         "id": 2,
@@ -27,12 +27,12 @@
             "Clasica",
             "Azul"
         ],
-        "Imagen": "https://i.postimg.cc/8cb7V4Nm/vegeta.jpg"
+        "Imagen": "https://i.postimg.cc/fTTDjWzK/remera-Vegeta-removebg-preview.png"
     },
     {
         "id": 3,
         "nombre": "Remera Gohan",
-        "Descripcion": "Remera morada con Gohan en su fase mística.",
+        "Descripcion": "Remera morada con Gohan en su fase SSJ2.",
         "Precio": "$19000",
         "Stock": 12,
         "Categoria": "remeras",
@@ -42,7 +42,7 @@
             "Gohan",
             "Mística"
         ],
-        "Imagen": "https://i.postimg.cc/Gm3YddLm/gohan.jpg"
+        "Imagen": "https://i.postimg.cc/8cTDYNhT/remera-Gohan-removebg-preview.png"
     },
     {
         "id": 4,
@@ -57,7 +57,7 @@
             "Verde",
             "Guerrero"
         ],
-        "Imagen": "https://i.postimg.cc/j2wFfq8L/piccolo.jpg"
+        "Imagen": "https://i.postimg.cc/WzSjLCng/remera-Piccolo-removebg-preview.png"
     },
     {
         "id": 5,
@@ -72,7 +72,7 @@
             "Futuro",
             "Trunks"
         ],
-        "Imagen": "https://i.postimg.cc/Qdprf59y/trunks.jpg"
+        "Imagen": "https://i.postimg.cc/mZSTH1sk/remera-Trunks-removebg-preview.png"
     },
     {
         "id": 6,
@@ -87,12 +87,12 @@
             "Naranja",
             "Goku"
         ],
-        "Imagen": "https://i.postimg.cc/5Nw8XY4c/BuzoDb.jpg"
+        "Imagen": "https://i.postimg.cc/HW0k9PQp/Buzo-Db-removebg-preview.png"
     },
     {
         "id": 7,
         "nombre": "Buzo Broly",
-        "Descripcion": "Buzo verde con la imponente imagen de Broly en modo Super Saiyan.",
+        "Descripcion": "Buzo negro con la imponente imagen de Broly en modo Super Saiyan.",
         "Precio": "$32000",
         "Stock": 15,
         "Categoria": "buzos",
@@ -102,12 +102,12 @@
             "Verde",
             "Broly"
         ],
-        "Imagen": "https://i.postimg.cc/LsJ1hLvZ/broly-buzo.jpg"
+        "Imagen": "https://i.postimg.cc/MHwK8y82/buzo-Broly-removebg-preview.png"
     },
     {
         "id": 8,
         "nombre": "Buzo Vegeta Azul",
-        "Descripcion": "Buzo azul con la figura de Vegeta en modo Super Saiyan Blue.",
+        "Descripcion": "Buzo azul con la figura de Vegeta en su estado base.",
         "Precio": "$31000",
         "Stock": 12,
         "Categoria": "buzos",
@@ -117,12 +117,12 @@
             "Azul",
             "Vegeta"
         ],
-        "Imagen": "https://i.postimg.cc/gJZsdQfj/vegeta-buzo.jpg"
+        "Imagen": "https://i.postimg.cc/QxXx4kbc/buzo-Vegeta-removebg-preview.png"
     },
     {
         "id": 9,
         "nombre": "Buzo Trunks Futuro",
-        "Descripcion": "Buzo gris con el diseño de Trunks y su espada del futuro.",
+        "Descripcion": "Buzo gris con el diseño de Trunks SSJ y su espada del futuro.",
         "Precio": "$33000",
         "Stock": 10,
         "Categoria": "buzos",
@@ -132,12 +132,12 @@
             "Gris",
             "Trunks"
         ],
-        "Imagen": "https://i.postimg.cc/8zqNpkRb/trunks-buzo.jpg"
+        "Imagen": "https://i.postimg.cc/SRGQQJyX/buzo-Trunks-removebg-preview.png"
     },
     {
         "id": 10,
         "nombre": "Buzo Goten",
-        "Descripcion": "Buzo negro con Goten en pose de ataque.",
+        "Descripcion": "Buzo negro con Goten entrenando con su amigo Trunks.",
         "Precio": "$29000",
         "Stock": 18,
         "Categoria": "buzos",
@@ -147,7 +147,7 @@
             "Negro",
             "Goten"
         ],
-        "Imagen": "https://i.postimg.cc/W3kzTsWN/goten-buzo.jpg"
+        "Imagen": "https://i.postimg.cc/bJkNMmW9/buzo-Goten-removebg-preview.png"
     },
     {
         "id": 11,
@@ -162,67 +162,68 @@
             "Plateado",
             "Goku"
         ],
-        "Imagen": "https://i.postimg.cc/rwNGPd3G/anilloDB.jpg"
+        "Imagen": "https://i.postimg.cc/qqvSnRs6/Anillo-goku-removebg-preview.png"
     },
     {
         "id": 12,
-        "nombre": "Anillo Maestro Roshi",
-        "Descripcion": "Anillo dorado con el símbolo del Maestro Roshi.",
+        "nombre": "Anillo Marca de la Kamehouse",
+        "Descripcion": "Anillo plateado con el símbolo de la escuela del maestro Roshi.",
         "Precio": "$16000",
         "Stock": 20,
         "Categoria": "anillos",
         "Descuento": 5,
         "Tags": [
             "Anillo",
-            "Dorado",
-            "Roshi"
+            "Plateado",
+            "Roshi",
+            "Kamehouse"
         ],
-        "Imagen": "https://i.postimg.cc/m2bDzVyb/roshi-anillo.jpg"
+        "Imagen": "https://i.postimg.cc/Zq9qPbLg/anillo-Kame-Simbol-removebg-preview.png"
     },
     {
         "id": 13,
         "nombre": "Anillo Majin Buu",
-        "Descripcion": "Anillo rosa con el símbolo de la marca Majin de Majin Buu.",
+        "Descripcion": "Anillo plateado con el símbolo de la marca Majin de Majin Buu.",
         "Precio": "$14000",
         "Stock": 18,
         "Categoria": "anillos",
         "Descuento": 0,
         "Tags": [
             "Anillo",
-            "Rosa",
+            "Plateado",
             "Majin Buu"
         ],
-        "Imagen": "https://i.postimg.cc/BQPjSb7z/majinbuu-anillo.jpg"
+        "Imagen": "https://i.postimg.cc/Sx1sz2cC/anillo-Marca-Majin-removebg-preview.png"
     },
     {
         "id": 14,
-        "nombre": "Anillo Cell",
-        "Descripcion": "Anillo verde metálico inspirado en el diseño de Cell.",
+        "nombre": "Anillo Del Tiempo",
+        "Descripcion": "Anillo plateado con las inscripciones como el que usaba Goku Black",
         "Precio": "$17000",
         "Stock": 15,
         "Categoria": "anillos",
         "Descuento": 10,
         "Tags": [
             "Anillo",
-            "Verde",
-            "Cell"
+            "Plateado",
+            "Goku Black"
         ],
-        "Imagen": "https://i.postimg.cc/wTrRCGRD/cell-anillo.jpg"
+        "Imagen": "https://i.postimg.cc/cLLCHMtd/anillo-Del-Tiempo-removebg-preview.png"
     },
     {
         "id": 15,
-        "nombre": "Anillo Freezer",
-        "Descripcion": "Anillo plateado con detalles morados inspirados en Freezer.",
+        "nombre": "Anillo Marca de la Kamehouse (Version azul)",
+        "Descripcion": "Anillo azul con el símbolo de la escuela del maestro Roshi.",
         "Precio": "$18000",
         "Stock": 12,
         "Categoria": "anillos",
         "Descuento": 0,
         "Tags": [
             "Anillo",
-            "Plateado",
-            "Freezer"
+            "Azul",
+            "Roshi"
         ],
-        "Imagen": "https://i.postimg.cc/SKmbhpGK/freezer-anillo.jpg"
+        "Imagen": "https://i.postimg.cc/g0f2NCS0/anillo-Azul-Kame-Simbol-removebg-preview.png"
     },
     {
         "id": 16,
@@ -237,12 +238,12 @@
             "Naranja",
             "Goku"
         ],
-        "Imagen": "https://i.postimg.cc/placeholder/goku-medias.jpg"
+        "Imagen": "https://i.postimg.cc/0yj5xkhQ/Medias-DB-removebg-preview.png"
     },
     {
         "id": 17,
         "nombre": "Medias Vegeta",
-        "Descripcion": "Medias azules con el diseño de la armadura de Vegeta.",
+        "Descripcion": "Medias azules con el diseño de Vegeta en su estado blue.",
         "Precio": "$5200",
         "Stock": 25,
         "Categoria": "medias",
@@ -252,12 +253,12 @@
             "Azul",
             "Vegeta"
         ],
-        "Imagen": "https://i.postimg.cc/placeholder/vegeta-medias.jpg"
+        "Imagen": "https://i.postimg.cc/9MdC1rwx/medias-Vegeta-removebg-preview.png"
     },
     {
         "id": 18,
         "nombre": "Medias Gohan",
-        "Descripcion": "Medias moradas con detalles del traje de Gohan en su fase adolescente.",
+        "Descripcion": "Medias moradas con detalles del traje de Gohan SSJ en su fase adolescente.",
         "Precio": "$5100",
         "Stock": 28,
         "Categoria": "medias",
@@ -267,7 +268,7 @@
             "Morado",
             "Gohan"
         ],
-        "Imagen": "https://i.postimg.cc/placeholder/gohan-medias.jpg"
+        "Imagen": "https://i.postimg.cc/qvFJ7fdG/medias-Gohan-removebg-preview.png"
     },
     {
         "id": 19,
@@ -282,7 +283,7 @@
             "Naranja",
             "Krillin"
         ],
-        "Imagen": "https://i.postimg.cc/placeholder/krillin-medias.jpg"
+        "Imagen": "https://i.postimg.cc/6QG92HWx/medias-Krillin-removebg-preview.png"
     },
     {
         "id": 20,
@@ -297,7 +298,7 @@
             "Verde",
             "Piccolo"
         ],
-        "Imagen": "https://i.postimg.cc/placeholder/piccolo-medias.jpg"
+        "Imagen": "https://i.postimg.cc/hjWK99vz/medias-Piccolo-removebg-preview.png"
     },
     {
         "id": 21,
@@ -312,7 +313,7 @@
             "Coleccionable",
             "Goku"
         ],
-        "Imagen": "https://i.postimg.cc/7661tZ9D/goku-SHFiguart.jpg"
+        "Imagen": "https://i.postimg.cc/ydvrVHM1/Goku-SHFiguart-removebg-preview.png"
     },
     {
         "id": 22,
@@ -327,7 +328,7 @@
             "Coleccionable",
             "Piccolo"
         ],
-        "Imagen": "https://i.postimg.cc/qRgG1xXj/Orange-Piccolo-SHFiguart.jpg"
+        "Imagen": "https://i.postimg.cc/nLfW2TKJ/Orange-Piccolo-SHFiguart-removebg-preview.png"
     },
     {
         "id": 23,
@@ -342,7 +343,7 @@
             "Coleccionable",
             "Gohan"
         ],
-        "Imagen": "https://i.postimg.cc/JzcK0nzc/SSJ2-Gohan-SHFiguart.jpg"
+        "Imagen": "https://i.postimg.cc/1t9jhtY7/SSJ2-Gohan-SHFiguart-removebg-preview.png"
     },
     {
         "id": 24,
@@ -357,7 +358,7 @@
             "Coleccionable",
             "Goku Black"
         ],
-        "Imagen": "https://i.postimg.cc/XvjLCbZM/SSJRose-SHFiguart.jpg"
+        "Imagen": "https://i.postimg.cc/x88p8ZQK/SSJRose-SHFiguart-removebg-preview.png"
     },
     {
         "id": 25,
@@ -372,6 +373,31 @@
             "Coleccionable",
             "Cell"
         ],
-        "Imagen": "https://i.postimg.cc/R0gR1DfW/Perfectcell-SHFiguart.jpg"
+        "Imagen": "https://i.postimg.cc/rpGPPWgt/Perfectcell-SHFiguart-removebg-preview.png"
     }
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

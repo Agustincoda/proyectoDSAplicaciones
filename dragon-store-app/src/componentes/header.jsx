@@ -14,13 +14,15 @@ export default Header;
 const styles = StyleSheet.create({
     headerContainer: {
         height: 150,
-        textAlign: "center",
+        width: '100%', 
         justifyContent: "center",
+        alignItems: "center", 
         backgroundColor: colores.blancoCrema 
     },
     title: {
         fontSize: 16,
         fontWeight: "bold",
-        color: colores.bordoTitulos 
+        color: colores.bordoTitulos,
+        textAlign: 'center' 
     }
 });
