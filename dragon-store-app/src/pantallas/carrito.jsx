@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View, Image,Pressable } from 'react-native'
 import React from 'react'
-import { colors } from '../../global/colors'
+import { colores, colors } from '../../global/colors'
 import FlatCard from '../componentes/flatcard'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useState, useEffect } from 'react'
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
     confirmButton: {
         padding: 8,
         paddingHorizontal: 16,
-        backgroundColor: colors.morado,
+        backgroundColor: colores.negro,
         borderRadius: 16,
         marginBottom: 24,
     },
     confirmButtonText: {
-        color: colors.blanco,
+        color: colores.blancoCrema,
         fontSize: 16,
         fontWeight: '700'
     }, cartScreenTitle: {
@@ -116,3 +116,4 @@ const styles = StyleSheet.create({
     }
 
 })
+

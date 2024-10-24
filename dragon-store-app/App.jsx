@@ -2,16 +2,19 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { StatusBar } from 'expo-status-bar';
-import {useEffect,useState} from 'react'
+import { useEffect } from 'react';
+import TabNavigator from './src/Navegacion/navegacionSectores'; 
 
-import TabNavigator from './src/navigation/TabNavigator';
+
+import { Provider } from 'react-redux';
+import { store } from './src/componentes/tienda'; 
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [loaded, error] = useFonts({
-    'Montserrat': require('./assets/fonts/Montserrat-Variable.ttf'),
-    'PressStart2P': require('./assets/fonts/PressStart2P-Static.ttf')
+    'Montserrat': require('./global/fuentes/Montserrat-Variable.ttf'), 
+    'PressStart2P': require('./global/fuentes/PressStart2P-Static.ttf')  
   });
 
   useEffect(() => {
@@ -21,13 +24,13 @@ export default function App() {
   }, [loaded, error]);
 
   if (!loaded && !error) {
-    return null;
+    return null; 
   }
 
   return (
-    <>
-      <TabNavigator />
-      <StatusBar style="light" />
-    </>
+    <Provider store={store}>
+      <TabNavigator /> 
+      <StatusBar style="light" /> 
+    </Provider>
   );
 }

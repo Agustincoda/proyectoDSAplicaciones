@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import ShopNavigator from "./navegacionTienda";
 import CartNavigator from "./navegacionCarrito";
 import ReceiptsNavigator from "./navegacionCompra";
-import { colors } from "../global/colors";
+import { colores, colors } from "../../global/colors";
 
 
 const Tab = createBottomTabNavigator()
@@ -26,21 +26,21 @@ const TabNavigator = () => {
                 name="Shop" 
                 component={ShopNavigator} 
                 options={{
-                    tabBarIcon: ({focused})=>(<Icon name="storefront" size={32} color={focused?colors.grisOscuro:colors.grisMedio} />)
+                    tabBarIcon: ({focused})=>(<Icon name="storefront" size={32} color={focused?colores.negro:colores.blancoCrema} />)
                 }}
             />
             <Tab.Screen 
                 name="Cart" 
                 component={CartNavigator} 
                 options={{
-                    tabBarIcon: ({focused})=>(<Icon name="shopping-cart" size={32} color={focused?colors.grisOscuro:colors.grisMedio} />)
+                    tabBarIcon: ({focused})=>(<Icon name="shopping-cart" size={32} color={focused?colores.negro:colores.blancoCrema} />)
                 }}
             />
             <Tab.Screen 
                 name="Receipts"
                 component={ReceiptsNavigator} 
                 options={{
-                    tabBarIcon: ({focused})=>(<Icon name="receipt-long" size={32} color={focused?colors.grisOscuro:colors.grisMedio} />)
+                    tabBarIcon: ({focused})=>(<Icon name="receipt-long" size={32} color={focused?colores.negro:colores.blancoCrema} />)
                 }}
             />
         </Tab.Navigator>
@@ -53,6 +53,6 @@ export default TabNavigator
 const styles = StyleSheet.create({
     tabBar:{
         height: 64,
-        backgroundColor: colors.grisClaro
+        backgroundColor: colores.naranjaGoku
     }
 })

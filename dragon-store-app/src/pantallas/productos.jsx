@@ -4,14 +4,19 @@ import products from '../componentes/productos.json';
 import FlatCard from '../componentes/flatcard';
 import { colores } from "../../global/colors";
 
-
-
 const ProductsScreen = ({ category, setCategory }) => {
     const [productsFiltered, setProductsFiltered] = useState([]);
 
     useEffect(() => {
-        const productsTempFiltered = products.filter(product => product.category.toLowerCase() === category.toLowerCase());
-        setProductsFiltered(productsTempFiltered);
+        if (category) {
+            const productsTempFiltered = products.filter(product => {
+                // Validación para asegurarse de que 'product.category' esté definida
+                return product?.category?.toLowerCase() === category.toLowerCase();
+            });
+            setProductsFiltered(productsTempFiltered);
+        } else {
+            setProductsFiltered([]);
+        }
     }, [category]);
 
     const renderProductItem = ({ item }) => {
@@ -80,10 +85,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontWeight: '700',
         fontSize: 18,
-        color: colores.celesteTitulos // Aplicamos el color de título
+        color: colores.celesteTitulos
     },
     shortDescription: {
-        color: colores.negro // Aquí puedes definir algún color si lo necesitas
+        color: colores.negro
     },
     tags: {
         flexDirection: 'row',
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
     price: {
         fontWeight: '800',
         fontSize: 18,
-        color: colores.bordoTitulos // Aplicamos el color de precio
+        color: colores.bordoTitulos
     },
     discount: {
         backgroundColor: colores.naranjaGoku,
@@ -109,6 +114,6 @@ const styles = StyleSheet.create({
         color: colores.blancoCrema
     },
     noStockText: {
-        color: 'red' // Este puede ser personalizado si deseas un color específico
+        color: 'red'
     }
 });
