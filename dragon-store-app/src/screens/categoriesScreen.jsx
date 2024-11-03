@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Image, Pressable, useWindowDimensions } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image, Pressable, useWindowDimensions, ActivityIndicator } from 'react-native'
 import FlatCard from '../componentes/flatcard'
 import { useEffect, useState } from 'react'
 import { colors } from '../../global/colors'
@@ -9,7 +9,8 @@ const CategoriesScreen = ({ navigation }) => {
     const { width, height } = useWindowDimensions()
     const [isPortrait, setIsPortrait] = useState(true)
 
-    const categories = useSelector(state => state.shopReducer.value.categories)
+    const { data: categories, error, isLoading } = useGetCategoriesQuery()
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,12 +21,10 @@ const CategoriesScreen = ({ navigation }) => {
         }
     }, [width, height])
 
-    console.log(isPortrait)
-
     const renderCategoryItem = ({ item, index }) => {
         return (
             <Pressable onPress={() => {
-                dispatch(setCategory(item.title)) 
+                dispatch(setCategory(item.title))
                 navigation.navigate('Productos')
             }}>
                 <FlatCard style={
@@ -46,11 +45,17 @@ const CategoriesScreen = ({ navigation }) => {
 
     return (
         <>
-            <FlatList
-                data={categories}
-                keyExtractor={item => item.id}
-                renderItem={renderCategoryItem}
-            />
+            {
+                isLoading
+                    ? <ActivityIndicator size="large" color={colors.verdeNeon} />
+                    : error
+                        ? <Text>Error al cargar las categorías</Text>
+                        : <FlatList
+                            data={categories}
+                            keyExtractor={item => item.id}
+                            renderItem={renderCategoryItem}
+                        />
+            }
         </>
     )
 }
@@ -83,5 +88,4 @@ const styles = StyleSheet.create({
     rowReverse: {
         flexDirection: 'row-reverse',
     },
-    
 })

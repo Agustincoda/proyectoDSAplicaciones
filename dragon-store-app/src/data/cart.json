@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "nombre": "Remera Goku SSJ",
+        "Descripcion": "Remera negra con el diseño de Goku en modo Super Saiyan.",
+        "Precio": 20000,
+        "Cantidad": 1,
+        "Categoria": "remeras",
+        "Tags": [
+            "Remera",
+            "Clasica",
+            "Oscura"
+        ],
+        "Imagen": "https://i.postimg.cc/Pr2fBp39/images-removebg-preview.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Buzo Goku Naranja",
+        "Descripcion": "Buzo naranja con el clásico símbolo de Goku.",
+        "Precio": 30000,
+        "Cantidad": 2,
+        "Categoria": "buzos",
+        "Tags": [
+            "Buzo",
+            "Naranja",
+            "Goku"
+        ],
+        "Imagen": "https://i.postimg.cc/HW0k9PQp/Buzo-Db-removebg-preview.png"
+    },
+    {
+        "id": 21,
+        "nombre": "Figura Goku Base",
+        "Descripcion": "Figura coleccionable de Goku en su forma base, detallada y articulada.",
+        "Precio": 45000,
+        "Cantidad": 1,
+        "Categoria": "figuras",
+        "Tags": [
+            "Figura",
+            "Coleccionable",
+            "Goku"
+        ],
+        "Imagen": "https://i.postimg.cc/ydvrVHM1/Goku-SHFiguart-removebg-preview.png"
+    }
+]

@@ -1,5 +1,4 @@
 import { StyleSheet, TextInput } from 'react-native'
-import { colors } from '../global/colors'
 import { colores } from '../../global/colors'
 
 const Search = ({setSearch}) => {

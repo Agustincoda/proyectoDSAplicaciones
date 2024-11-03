@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 1,
         shadowOffset: { width: 3, height: 5 },
-        elevation: 5
+        elevation: 10
     }
 });

@@ -1,0 +1,31 @@
+{
+    "id": 101,
+    "Fecha": "2023-10-30T12:45:00",
+    "Productos": [
+        {
+            "id": 1,
+            "nombre": "Remera Goku SSJ",
+            "Descripcion": "Remera negra con el diseño de Goku en modo Super Saiyan.",
+            "Precio": 20000,
+            "Cantidad": 1,
+            "Subtotal": 20000
+        },
+        {
+            "id": 6,
+            "nombre": "Buzo Goku Naranja",
+            "Descripcion": "Buzo naranja con el clásico símbolo de Goku.",
+            "Precio": 30000,
+            "Cantidad": 2,
+            "Subtotal": 60000
+        },
+        {
+            "id": 21,
+            "nombre": "Figura Goku Base",
+            "Descripcion": "Figura coleccionable de Goku en su forma base, detallada y articulada.",
+            "Precio": 45000,
+            "Cantidad": 1,
+            "Subtotal": 45000
+        }
+    ],
+    "Total": 125000
+}
