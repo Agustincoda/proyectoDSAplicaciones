@@ -1,7 +1,7 @@
 import { StyleSheet, Text, FlatList } from 'react-native';
-import receipts from '../data/receipts.json';
-import FlatCard from '../components/FlatCard';
-import { colors } from '../global/colors';
+import receipts from '../data/receipt.json';
+import FlatCard from '../components/flatcard';
+import { colores } from '../../global/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ReceiptsScreen = () => {
@@ -48,17 +48,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '700',
-    color: colors.celesteTitulos,
+    color: colores.celesteTitulos,
   },
   date: {
-    color: colors.negro,
+    color: colores.negro,
   },
   total: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.bordoTitulos,
+    color: colores.bordoTitulos,
   },
   viewIcon: {
     alignSelf: 'flex-end',
+    color: colores.bordoTitulos
   }
 });

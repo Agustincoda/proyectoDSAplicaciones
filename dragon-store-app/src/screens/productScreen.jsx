@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Pressable, useWindowDimensions, Image, FlatList, ScrollView, ActivityIndicator } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { colors } from '../../global/colors';
+import { colores } from '../../global/colors';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../features/cartSlice';
@@ -64,23 +64,24 @@ export default ProductScreen
 const styles = StyleSheet.create({
     goBack: {
         padding: 8,
-        color: colors.grisMedio
+        color: colores.negro
     },
     productContainer: {
         paddingHorizontal: 16
     },
     textBrand: {
-        color: colors.grisOscuro,
+        color: colores.negro,
     },
     textTitle: {
         fontSize: 24,
         fontWeight: '700',
-        color: colors.bordoTitulos
+        color: colores.bordoTitulos
     },
     longDescription: {
         fontSize: 16,
         textAlign: 'justify',
         paddingVertical: 8,
+        color: colores.negro
     },
     tagsContainer: {
         flexDirection: 'row',
@@ -96,16 +97,16 @@ const styles = StyleSheet.create({
     tagText: {
         fontWeight: '600',
         fontSize: 14,
-        color: colors.morado
+        color: colores.celesteTitulos
     },
     discount: {
-        backgroundColor: colors.naranjaBrillante,
+        backgroundColor: colores.naranjaGoku,
         width: 64,
         height: 64,
         borderRadius: 64,
     },
     discountText: {
-        color: colors.blanco,
+        color: colores.blancoCrema,
         textAlign: 'center',
         verticalAlign: 'center'
     },
@@ -116,18 +117,19 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '700',
         alignSelf: 'center',
-        paddingVertical: 16
+        paddingVertical: 16,
+        color: colores.naranjaGoku
     },
     addToCartButton: {
         padding: 8,
         paddingHorizontal: 16,
-        backgroundColor: colors.morado,
+        backgroundColor: colores.bordoTitulos,
         borderRadius: 16,
         marginVertical: 16
     },
     textAddToCart: {
-        color: colors.blanco,
+        color: colores.blancoCrema,
         fontSize: 24,
         textAlign: 'center',
     }
-})
+});

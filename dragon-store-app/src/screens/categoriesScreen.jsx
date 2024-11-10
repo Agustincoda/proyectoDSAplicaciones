@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, FlatList, Image, Pressable, useWindowDimensions, ActivityIndicator } from 'react-native'
-import FlatCard from '../componentes/flatcard'
+import FlatCard from '../components/flatcard'
 import { useEffect, useState } from 'react'
-import { colors } from '../../global/colors'
+import { colores } from '../../global/colors'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategory } from '../componentes/features'
+import { setCategory } from '../features/shopSlice'
+import { useGetCategoriesQuery } from '../services/shopService'
 
 const CategoriesScreen = ({ navigation }) => {
+
     const { width, height } = useWindowDimensions()
     const [isPortrait, setIsPortrait] = useState(true)
 
@@ -14,11 +16,7 @@ const CategoriesScreen = ({ navigation }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (width > height) {
-            setIsPortrait(false)
-        } else {
-            setIsPortrait(true)
-        }
+        setIsPortrait(width <= height)
     }, [width, height])
 
     const renderCategoryItem = ({ item, index }) => {
@@ -28,7 +26,7 @@ const CategoriesScreen = ({ navigation }) => {
                 navigation.navigate('Productos')
             }}>
                 <FlatCard style={
-                    index % 2 == 0
+                    index % 2 === 0
                         ? { ...styles.categoryItemContainer, ...styles.row }
                         : { ...styles.categoryItemContainer, ...styles.rowReverse }
                 }>
@@ -37,7 +35,9 @@ const CategoriesScreen = ({ navigation }) => {
                         style={styles.image}
                         resizeMode='contain'
                     />
-                    <Text style={width > 400 ? styles.categoryTitle : styles.categoryTitleSmall}>{item.title}</Text>
+                    <Text style={width > 400 ? styles.categoryTitle : styles.categoryTitleSmall}>
+                        {item.title}
+                    </Text>
                 </FlatCard>
             </Pressable>
         )
@@ -47,14 +47,14 @@ const CategoriesScreen = ({ navigation }) => {
         <>
             {
                 isLoading
-                    ? <ActivityIndicator size="large" color={colors.verdeNeon} />
-                    : error
-                        ? <Text>Error al cargar las categorías</Text>
-                        : <FlatList
-                            data={categories}
-                            keyExtractor={item => item.id}
-                            renderItem={renderCategoryItem}
-                        />
+                ? <ActivityIndicator size="large" color={colores.negro} />
+                : error
+                ? <Text style={styles.errorText}>Error al cargar las categorías</Text>
+                : <FlatList
+                    data={categories}
+                    keyExtractor={item => item.id}
+                    renderItem={renderCategoryItem}
+                  />
             }
         </>
     )
@@ -69,14 +69,17 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginVertical: 5,
         padding: 20,
+        backgroundColor: colores.fondoCard,
     },
     categoryTitle: {
         fontSize: 24,
         fontWeight: "bold",
+        color: colores.celesteTitulos,
     },
     categoryTitleSmall: {
         fontSize: 12,
         fontWeight: "bold",
+        color: colores.celesteTitulos,
     },
     image: {
         width: 150,
@@ -87,5 +90,11 @@ const styles = StyleSheet.create({
     },
     rowReverse: {
         flexDirection: 'row-reverse',
+    },
+    errorText: {
+        color: colores.error,
+        fontSize: 16,
+        textAlign: 'center',
+        marginVertical: 10,
     },
 })

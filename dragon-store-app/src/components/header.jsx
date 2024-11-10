@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from 'react-native'
 import { colores } from '../../global/colors'
-import MontserratText from './MontserratText'
+import MontserratText from './montserratText'
 
 const Header = ({ subtitle }) => {
   return (

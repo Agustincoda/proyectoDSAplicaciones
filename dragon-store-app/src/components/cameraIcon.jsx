@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { colors } from '../../global/colors';
+import { colores } from '../../global/colors';
 
 const CameraIcon = () => {
   return (
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     iconContainer:{
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:colors.grisOscuro,
+        backgroundColor:colores.negro,
         width:48,
         height:48,
         borderRadius:32

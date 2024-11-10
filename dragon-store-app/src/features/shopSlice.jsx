@@ -3,10 +3,7 @@ export const shopSlice = createSlice({
     name: 'shop',
     initialState: {
         value: {
-            //categories: categories,
-            //products: products,
             categorySelected: "",
-            //productsFilteredByCategory:[],
             productId: null
         }
     },

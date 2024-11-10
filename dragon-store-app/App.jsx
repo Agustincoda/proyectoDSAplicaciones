@@ -13,8 +13,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [loaded, error] = useFonts({
-    'Montserrat': require('./assets/fonts/Montserrat-Variable.ttf'),
-    'PressStart2P': require('./assets/fonts/PressStart2P-Static.ttf')
+    'Montserrat': require('./global/fuentes/Montserrat-Variable.ttf'),
+    'PressStart2P': require('./global/fuentes/PressStart2P-Static.ttf')
   });
 
   useEffect(() => {

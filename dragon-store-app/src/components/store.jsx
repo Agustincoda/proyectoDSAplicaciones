@@ -5,6 +5,7 @@ import authReducer from '../features/authSlice'
 import { shopApi } from '../services/shopService'
 import { receiptApi } from '../services/receiptService'
 import { authApi } from '../services/authService'
+import { userApi } from '../services/userService'
 
 export const store = configureStore({
   reducer: { 

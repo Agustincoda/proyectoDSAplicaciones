@@ -1,11 +1,11 @@
 import { FlatList, StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
-import { colores, colors } from '../../global/colors'
-import FlatCard from '../componentes/flatcard'
+import { colores} from '../../global/colors'
+import FlatCard from '../components/flatcard'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { usePostReceiptMutation } from '../services/receiptsService'
+import { usePostReceiptMutation } from '../services/receiptService'
 import { clearCart } from '../features/cartSlice'
 
 const CartScreen = ({ navigation }) => {
@@ -94,19 +94,29 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '700'
+    fontWeight: '700',
+    color: colores.bordoTitulos
   },
   description: {
     marginBottom: 16,
+    color: colores.negro
+  },
+  price: {
+    color: colores.naranjaGoku
+  },
+  quantity: {
+    color: colores.celesteTitulos
   },
   total: {
     marginTop: 16,
     fontSize: 16,
-    fontWeight: '700'
+    fontWeight: '700',
+    color: colores.naranjaGoku
   },
   trashIcon: {
     alignSelf: 'flex-end',
     marginRight: 16,
+    color: "#FC7A5E"
   },
   footerContainer: {
     padding: 32,
@@ -116,17 +126,18 @@ const styles = StyleSheet.create({
   },
   footerTotal: {
     fontSize: 16,
-    fontWeight: '700'
+    fontWeight: '700',
+    color: colores.bordoTitulos
   },
   confirmButton: {
     padding: 8,
     paddingHorizontal: 16,
-    backgroundColor: colors.morado,
+    backgroundColor: colores.bordoTitulos,
     borderRadius: 16,
     marginBottom: 24,
   },
   confirmButtonText: {
-    color: colors.blanco,
+    color: colores.blancoCrema,
     fontSize: 16,
     fontWeight: '700'
   },
@@ -134,7 +145,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     textAlign: "center",
-    paddingVertical: 8
+    paddingVertical: 8,
+    color: colores.bordoTitulos
   },
   cartEmpty: {
     flex: 1,
@@ -142,6 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cartEmptyText: {
-    fontSize: 16
+    fontSize: 16,
+    color: colores.negro
   }
-})
+});

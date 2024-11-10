@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TextInput, Pressable, Dimensions } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
-import { colores } from '../../global/colors'
+import { colores } from '../../../global/colors'
 import { useState, useEffect } from 'react';
 import { useSignupMutation } from '../../services/authService';
-import { setUser } from '../../features/auth/authSlice';
+import { setUser } from '../../features/authSlice';
 import { useDispatch } from 'react-redux';
 
 const textInputWidth = Dimensions.get('window').width * 0.7
