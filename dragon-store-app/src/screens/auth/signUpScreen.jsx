@@ -7,7 +7,7 @@ import { setUser } from '../../features/authSlice';
 import { useDispatch } from 'react-redux';
 
 const textInputWidth = Dimensions.get('window').width * 0.7
-
+pepe
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
