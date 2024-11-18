@@ -1,65 +1,70 @@
-import { StyleSheet, Text, View, Pressable, useWindowDimensions, Image, FlatList, ScrollView, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, Pressable, useWindowDimensions, Image, FlatList, ScrollView, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { colores } from '../../global/colors';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../features/cartSlice';
-import { useGetProductQuery } from '../services/shopService';
+import { useGetProductsByCategoryQuery } from '../services/shopService';
 
 const ProductScreen = ({ route, navigation }) => {
-    const productId = useSelector(state => state.shopReducer.value.productId)
-    const { width, height } = useWindowDimensions()
-    const { data: productFound, error, isLoading } = useGetProductQuery(productId)
-    const dispatch = useDispatch()
+    const { category } = route.params;
+    const { data: products, error, isLoading } = useGetProductsByCategoryQuery(category);
+    const { width } = useWindowDimensions();
+    const dispatch = useDispatch();
 
     return (
         <>
             {
                 isLoading
-                    ? <ActivityIndicator size="large" color={colors.verdeNeon} />
+                    ? <ActivityIndicator size="large" color={colores.verdeNeon} />
                     : error
-                        ? <Text>Error al cargar el producto</Text>
+                        ? <Text>Error al cargar productos de la categoría</Text>
                         :
-                        <ScrollView style={styles.productContainer}>
-                            <Pressable onPress={() => navigation.goBack()}>
-                                <Icon style={styles.goBack} name="arrow-back-ios" size={24} />
-                            </Pressable>
-                            <Text style={styles.textBrand}>{productFound.brand}</Text>
-                            <Text style={styles.textTitle}>{productFound.title}</Text>
-                            <Image
-                                source={{ uri: productFound.mainImage }}
-                                alt={productFound.title}
-                                width='100%'
-                                height={width * 0.7}
-                                resizeMode='contain'
-                            />
-                            <Text style={styles.longDescription}>{productFound.longDescription}</Text>
-                            <View style={styles.tagsContainer}>
-                                <View style={styles.tags}>
-                                    <Text style={styles.tagText}>Tags : </Text>
-                                    {productFound.tags?.map(tag => <Text key={Math.random()} style={styles.tagText}>{tag}</Text>)}
-                                </View>
-                                {productFound.discount > 0 && (
-                                    <View style={styles.discount}>
-                                        <Text style={styles.discountText}>- {productFound.discount} %</Text>
+                        <FlatList
+                            data={products}
+                            keyExtractor={(item) => item.id.toString()}
+                            renderItem={({ item }) => (
+                                <ScrollView style={styles.productContainer}>
+                                    <Pressable onPress={() => navigation.goBack()}>
+                                        <Icon style={styles.goBack} name="arrow-back-ios" size={24} />
+                                    </Pressable>
+                                    <Text style={styles.textBrand}>{item.nombre}</Text>
+                                    <Text style={styles.textTitle}>{item.nombre}</Text>
+                                    <Image
+                                        source={{ uri: item.Imagen }}
+                                        alt={item.nombre}
+                                        style={{ width: '100%', height: width * 0.7 }}
+                                        resizeMode='contain'
+                                    />
+                                    <Text style={styles.longDescription}>{item.Descripcion}</Text>
+                                    <View style={styles.tagsContainer}>
+                                        <View style={styles.tags}>
+                                            <Text style={styles.tagText}>Tags : </Text>
+                                            {item.Tags?.map(tag => <Text key={tag} style={styles.tagText}>{tag}</Text>)}
+                                        </View>
+                                        {item.Descuento > 0 && (
+                                            <View style={styles.discount}>
+                                                <Text style={styles.discountText}>- {item.Descuento} %</Text>
+                                            </View>
+                                        )}
                                     </View>
-                                )}
-                            </View>
-                            {productFound.stock <= 0 && <Text style={styles.noStockText}>Sin Stock</Text>}
-                            <Text style={styles.price}>Precio: $ {productFound.price}</Text>
-                            <Pressable
-                                style={({ pressed }) => [{ opacity: pressed ? 0.95 : 1 }, styles.addToCartButton]}
-                                onPress={() => dispatch(addItem({ ...productFound, quantity: 1 }))}
-                            >
-                                <Text style={styles.textAddToCart}>Agregar al carrito</Text>
-                            </Pressable>
-                        </ScrollView>
+                                    {item.Stock <= 0 && <Text style={styles.noStockText}>Sin Stock</Text>}
+                                    <Text style={styles.price}>Precio: {item.Precio}</Text>
+                                    <Pressable
+                                        style={({ pressed }) => [{ opacity: pressed ? 0.95 : 1 }, styles.addToCartButton]}
+                                        onPress={() => dispatch(addItem({ ...item, quantity: 1 }))}
+                                    >
+                                        <Text style={styles.textAddToCart}>Agregar al carrito</Text>
+                                    </Pressable>
+                                </ScrollView>
+                            )}
+                        />
             }
         </>
     )
-}
+};
 
-export default ProductScreen
+export default ProductScreen;
 
 const styles = StyleSheet.create({
     goBack: {

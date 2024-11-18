@@ -38,7 +38,7 @@ const SignupScreen = ({ navigation }) => {
       style={styles.gradient}
     >
       <Text style={styles.title}>Tienda Del Dragon</Text>
-      <Text style={styles.subTitle}>Regístrate</Text>
+      <Text style={styles.subTitle}>Registrate</Text>
       <View style={styles.inputContainer}>
         <TextInput
           onChangeText={(text) => setEmail(text)}
@@ -74,7 +74,7 @@ const SignupScreen = ({ navigation }) => {
 
       <View style={styles.guestOptionContainer}>
         <Text style={styles.whiteText}>¿Solo quieres dar un vistazo?</Text>
-        <Pressable onPress={() => dispatch(setUser({ email: "demo@tiendadragon.com", token: "demo" }))}>
+        <Pressable onPress={() => dispatch(setUser({ email: "demo@mundogeek.com", token: "demo" }))}>
           <Text style={{ ...styles.whiteText, ...styles.strongText }}>Ingresa como invitado</Text>
         </Pressable>
       </View>

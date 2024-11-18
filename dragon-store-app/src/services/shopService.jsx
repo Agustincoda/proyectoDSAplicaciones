@@ -14,10 +14,10 @@ export const shopApi = createApi({
             transformResponse: (response) => response ? Object.values(response) : []
         }),
         getProductsByCategory: builder.query({
-            query: () => 'products.json',  // Cargar todos los productos sin filtro
+            query: (category) => 'products.json',
             transformResponse: (response) => {
-                console.log("Respuesta de Firebase (todos los productos):", response);
-                return response ? Object.values(response) : [];
+                const products = response ? Object.values(response) : [];
+                return products.filter(product => product.Categoria === category);
             }
         }),
         getProduct: builder.query({
