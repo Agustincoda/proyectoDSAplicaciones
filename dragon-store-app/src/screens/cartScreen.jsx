@@ -13,22 +13,29 @@ const CartScreen = ({ navigation }) => {
   const total = useSelector(state => state.cartReducer.value.total)
   const [triggerPost, result] = usePostReceiptMutation()
   const cartLength = useSelector(state => state.cartReducer.value.cartLenght)
+  // Los recibos requieren "auth != null" en las reglas de Firebase, y el
+  // usuario invitado no tiene un idToken real, así que no puede confirmar.
+  const isGuest = useSelector(state => state.authReducer.value.token === 'demo')
 
   const dispatch = useDispatch()
 
   const FooterComponent = () => (
     <View style={styles.footerContainer}>
       <Text style={styles.footerTotal}>Total: $ {total} </Text>
-      <Pressable
-        style={styles.confirmButton}
-        onPress={() => {
-          triggerPost({ cart, total, createdAt: Date.now() })
-          dispatch(clearCart())
-          navigation.navigate("Receipts")
-        }}
-      >
-        <Text style={styles.confirmButtonText}>Confirmar</Text>
-      </Pressable>
+      {isGuest ? (
+        <Text style={styles.guestNotice}>Iniciá sesión con una cuenta para poder confirmar la compra</Text>
+      ) : (
+        <Pressable
+          style={styles.confirmButton}
+          onPress={() => {
+            triggerPost({ cart, total, createdAt: Date.now() })
+            dispatch(clearCart())
+            navigation.navigate("Receipts")
+          }}
+        >
+          <Text style={styles.confirmButtonText}>Confirmar</Text>
+        </Pressable>
+      )}
     </View>
   )
 
@@ -146,6 +153,13 @@ const styles = StyleSheet.create({
     color: colores.blancoCrema,
     fontSize: 16,
     fontWeight: '700'
+  },
+  guestNotice: {
+    fontSize: 13,
+    color: colores.error,
+    textAlign: 'center',
+    marginBottom: 24,
+    marginHorizontal: 16,
   },
   cartScreenTitle: {
     fontSize: 16,

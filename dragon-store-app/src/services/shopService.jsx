@@ -14,6 +14,12 @@ export const shopApi = createApi({
             transformResponse: (response) => response ? Object.values(response) : []
         }),
         getProductsByCategory: builder.query({
+            // Trae todos los productos y filtra del lado del cliente
+            // (RTDB no permite filtrar por igualdad de texto ignorando
+            // mayúsculas). "category" NO se puede leer por closure desde
+            // "query" de arriba — son dos funciones separadas del mismo
+            // objeto — por eso transformResponse lo recibe como su
+            // tercer parámetro ("arg" en la documentación de RTK Query).
             query: (category) => 'products.json',
             transformResponse: (response, meta, category) => {
                 const products = response ? Object.values(response) : [];

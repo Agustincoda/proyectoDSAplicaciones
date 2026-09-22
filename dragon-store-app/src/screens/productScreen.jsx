@@ -7,6 +7,10 @@ import { product_to_cart_item } from '../features/functions';
 import { useGetProductQuery } from '../services/shopService';
 
 const ProductScreen = ({ navigation }) => {
+    // El producto a mostrar se identifica por Redux (seteado con
+    // setProductId en productsScreen.jsx al tocar una card), no por un
+    // parámetro de navegación: así esta pantalla no depende de que
+    // quien la abra recuerde pasarle los params correctos.
     const productId = useSelector((state) => state.shopReducer.value.productId);
     const { data: item, error, isLoading } = useGetProductQuery(productId);
     const { width } = useWindowDimensions();

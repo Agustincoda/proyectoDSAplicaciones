@@ -1,9 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { base_url } from "../firebase/database";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { authenticatedBaseQuery } from "./authenticatedBaseQuery";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: base_url }),
+  baseQuery: authenticatedBaseQuery,
   endpoints: (builder) => ({
     putProfilePicture: builder.mutation({
       query: ({ image,localId }) => ({

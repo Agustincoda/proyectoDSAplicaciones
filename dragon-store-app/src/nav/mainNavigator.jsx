@@ -14,11 +14,18 @@ import { fetchSession } from "../db"
 const MainNavigator = () => {
     const user = useSelector((state) => state.authReducer.value.email)
     const localId = useSelector((state) => state.authReducer.value.localId)
+    const isGuest = useSelector((state) => state.authReducer.value.token === 'demo')
 
     const dispatch = useDispatch()
 
-    const { data: profilePicture, isLoading, error } = useGetProfilePictureQuery(localId, { skip: !localId })
+    // Los invitados no tienen un idToken real, así que esta consulta
+    // siempre fallaría por permisos bajo las reglas de Firebase.
+    const { data: profilePicture, isLoading, error } = useGetProfilePictureQuery(localId, { skip: !localId || isGuest })
 
+    // Si no hay usuario en el estado (recién abriste la app), fija si
+    // había una sesión guardada en SQLite ("mantener sesión iniciada").
+    // La fila guardada usa la key "token", pero setUser espera "idToken"
+    // — por eso se remapea acá en vez de pasarle la fila tal cual.
     useEffect(() => {
         if (!user) {
             (async () => {

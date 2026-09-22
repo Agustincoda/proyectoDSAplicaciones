@@ -18,6 +18,9 @@ export default function App() {
     'PressStart2P': require('./global/fuentes/PressStart2P-Static.ttf')
   });
 
+  // Tiene que correr antes que cualquier pantalla intente leer o
+  // guardar una sesión (ver src/db/index.jsx), así que va acá, en el
+  // componente raíz, en vez de en la pantalla de login.
   useEffect(() => {
     createSessionsTable().catch((tableError) => console.log("Error al crear la tabla de sesiones", tableError));
   }, []);

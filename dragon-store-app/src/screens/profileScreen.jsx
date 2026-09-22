@@ -11,6 +11,9 @@ const ProfileScreen = () => {
     const user = useSelector(state=>state.authReducer.value.email)
     const image = useSelector(state=>state.authReducer.value.profilePicture)
     const localId = useSelector(state=>state.authReducer.value.localId)
+    // La foto de perfil requiere "auth != null" en las reglas de Firebase,
+    // y el usuario invitado no tiene un idToken real.
+    const isGuest = useSelector(state=>state.authReducer.value.token === 'demo')
     const dispatch = useDispatch()
 
     const [triggerPutProfilePicture,result] = usePutProfilePictureMutation()
@@ -52,11 +55,14 @@ const ProfileScreen = () => {
                         :
                         <Text style={styles.textProfilePlaceHolder}>{user.charAt(0).toUpperCase()}</Text>
                 }
-                <Pressable onPress={pickImage} style={({ pressed }) => [{ opacity: pressed ? 0.90 : 1 }, styles.cameraIcon]} >
-                    <CameraIcon />
-                </Pressable>
+                {!isGuest && (
+                    <Pressable onPress={pickImage} style={({ pressed }) => [{ opacity: pressed ? 0.90 : 1 }, styles.cameraIcon]} >
+                        <CameraIcon />
+                    </Pressable>
+                )}
             </View>
             <Text style={styles.profileData}>Email: {user}</Text>
+            {isGuest && <Text style={styles.guestNotice}>Iniciá sesión con una cuenta para poder subir una foto</Text>}
         </View>
     )
 }
@@ -85,6 +91,12 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         fontSize: 16,
         color: colores.celesteTitulos
+    },
+    guestNotice: {
+        fontSize: 13,
+        color: colores.error,
+        textAlign: 'center',
+        marginHorizontal: 16,
     },
     cameraIcon: {
         position: 'absolute',

@@ -2,6 +2,10 @@ import * as SQLite from 'expo-sqlite/legacy';
 
 const db = SQLite.openDatabase("mundogeek.db")
 
+// createSessionsTable() tiene que correr una vez al arrancar la app
+// (se llama desde App.jsx) antes de usar insertSession/fetchSession:
+// si la tabla no existe todavía, esas dos funciones fallan con un
+// error de SQL ("no such table: sessions") que solo se ve en la consola.
 export const createSessionsTable = () => {
     const promise = new Promise((resolved,rejected)=>{
         const query = 'CREATE TABLE IF NOT EXISTS sessions (localId TEXT PRIMARY KEY NOT NULL, email TEXT NOT NULL, token TEXT NOT NULL  ) '

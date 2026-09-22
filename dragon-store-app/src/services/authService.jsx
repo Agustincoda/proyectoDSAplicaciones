@@ -6,6 +6,8 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: base_auth_url }),
     endpoints: (builder) => ({
         signup: builder.mutation({
+            // returnSecureToken es obligatorio: sin este campo, Firebase
+            // no devuelve idToken/localId en la respuesta.
             query: ({ ...auth }) => ({
                 url: `accounts:signUp?key=${api_key}`,
                 method: 'POST',

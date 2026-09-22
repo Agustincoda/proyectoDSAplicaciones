@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { calculate_total_price } from "./functions";
 
+// action.payload siempre tiene que ser un cart item ya normalizado
+// (ver product_to_cart_item en functions.jsx), no un producto crudo de
+// Firebase — si no, item.price/item.quantity van a ser undefined y el
+// total termina en NaN.
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
