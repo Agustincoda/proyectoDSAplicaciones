@@ -15,9 +15,9 @@ export const shopApi = createApi({
         }),
         getProductsByCategory: builder.query({
             query: (category) => 'products.json',
-            transformResponse: (response) => {
+            transformResponse: (response, meta, category) => {
                 const products = response ? Object.values(response) : [];
-                return products.filter(product => product.Categoria === category);
+                return products.filter(product => product.Categoria?.toLowerCase() === category?.toLowerCase());
             }
         }),
         getProduct: builder.query({

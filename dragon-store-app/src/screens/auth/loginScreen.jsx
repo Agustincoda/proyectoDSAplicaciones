@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, TextInput, Pressable, Dimensions, Platform, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { colores } from '../../global/colors';
+import { colores } from '../../../global/colors';
 import { useState, useEffect } from 'react';
-import { setUser } from '../../features/auth/authSlice';
+import { setUser } from '../../features/authSlice';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../../services/authService';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { insertSession, clearSessions } from '../../db';
+import { validationSchema } from '../../validations/validationsScheme';
 
 const textInputWidth = Dimensions.get('window').width * 0.7;
 
@@ -14,6 +15,7 @@ const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
+    const [formError, setFormError] = useState("");
 
     const dispatch = useDispatch();
     const [triggerLogin, result] = useLoginMutation();
@@ -36,11 +38,19 @@ const LoginScreen = ({ navigation }) => {
                     .then(res => console.log("Usuario insertado con éxito", res))
                     .catch(error => console.log("Error al insertar usuario", error));
             }
+        } else if (result.isError) {
+            setFormError("No pudimos iniciar sesión. Revisá tu email y contraseña.");
         }
     }, [result, rememberMe]);
 
-    const onsubmit = () => {
-        triggerLogin({ email, password });
+    const onsubmit = async () => {
+        try {
+            await validationSchema.pick(['email', 'password']).validate({ email, password });
+            setFormError("");
+            triggerLogin({ email, password });
+        } catch (validationError) {
+            setFormError(validationError.message);
+        }
     };
 
     return (
@@ -71,6 +81,7 @@ const LoginScreen = ({ navigation }) => {
                         secureTextEntry
                     />
                 </View>
+                {formError ? <Text style={styles.errorText}>{formError}</Text> : null}
                 <View style={styles.rememberMeContainer}>
                     <Text style={styles.whiteText}>Mantener sesión iniciada</Text>
                     {rememberMe ? (
@@ -79,7 +90,7 @@ const LoginScreen = ({ navigation }) => {
                         </Pressable>
                     ) : (
                         <Pressable onPress={() => setRememberMe(!rememberMe)}>
-                            <Icon name="toggle-off" size={48} color={colores.negro} />
+                            <Icon name="toggle-off" size={48} color={colores.blancoCrema} />
                         </Pressable>
                     )}
                 </View>
@@ -94,7 +105,7 @@ const LoginScreen = ({ navigation }) => {
                 </Pressable>
                 <View style={styles.guestOptionContainer}>
                     <Text style={styles.whiteText}>¿Solo quieres dar un vistazo?</Text>
-                    <Pressable onPress={() => dispatch(setUser({ email: "demo@tiendadragon.com", token: "demo" }))}>
+                    <Pressable onPress={() => dispatch(setUser({ email: "demo@tiendadragon.com", idToken: "demo", localId: "guest" }))}>
                         <Text style={{ ...styles.whiteText, ...styles.strongText }}>Ingresa como invitado</Text>
                     </Pressable>
                 </View>
@@ -146,6 +157,11 @@ const styles = StyleSheet.create({
     },
     whiteText: {
         color: colores.blancoCrema
+    },
+    errorText: {
+        color: colores.error,
+        textAlign: 'center',
+        marginHorizontal: 24,
     },
     underLineText: {
         textDecorationLine: 'underline',

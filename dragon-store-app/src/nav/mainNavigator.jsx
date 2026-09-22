@@ -17,7 +17,7 @@ const MainNavigator = () => {
 
     const dispatch = useDispatch()
 
-    const { data: profilePicture, isLoading, error } = useGetProfilePictureQuery(localId)
+    const { data: profilePicture, isLoading, error } = useGetProfilePictureQuery(localId, { skip: !localId })
 
     useEffect(() => {
         if (!user) {
@@ -25,7 +25,11 @@ const MainNavigator = () => {
                 try {
                     const session = await fetchSession()
                     if (session.length) {
-                        dispatch(setUser(session[0]))
+                        dispatch(setUser({
+                            email: session[0].email,
+                            idToken: session[0].token,
+                            localId: session[0].localId
+                        }))
                     }
                 } catch (error) {
                     console.log("Error al obtener la sesión", error)

@@ -9,14 +9,14 @@ export const authApi = createApi({
             query: ({ ...auth }) => ({
                 url: `accounts:signUp?key=${api_key}`,
                 method: 'POST',
-                body: auth
+                body: { ...auth, returnSecureToken: true }
             })
         }),
         login: builder.mutation({
             query: ({ ...auth }) => ({
                 url: `accounts:signInWithPassword?key=${api_key}`,
                 method: 'POST',
-                body: auth
+                body: { ...auth, returnSecureToken: true }
             })
         })
     })

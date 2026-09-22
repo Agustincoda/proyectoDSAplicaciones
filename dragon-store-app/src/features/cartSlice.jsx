@@ -9,7 +9,7 @@ export const cartSlice = createSlice({
             user:"demo",
             total: null,
             cartLenght:0,
-            updateAt: Date.now().toLocaleString() //unix timestamp
+            updatedAt: new Date().toLocaleString()
         }
     },
     reducers: {
@@ -19,12 +19,10 @@ export const cartSlice = createSlice({
                 state.value.cartItems.push(action.payload) //action.payload es el producto
                 state.value.cartLenght += 1
             }else{
-                state.value.cartItems.map(item=>{
+                state.value.cartItems.forEach(item=>{
                     if(item.id===action.payload.id){
                         item.quantity += 1
-                        return item
                     }
-                    return item
                 })
             }
 
@@ -32,15 +30,18 @@ export const cartSlice = createSlice({
 
             state.value = {
                 ...state.value,
-                total, 
+                total,
                 updatedAt: new Date().toLocaleString()
             }
 
         },
         removeItem: (state,action)=>{
-            state.value.cartItems = state.value.cartItems.filter(item=item.id!==action.payload)
+            const wasInCart = state.value.cartItems.some(item=>item.id===action.payload)
+            state.value.cartItems = state.value.cartItems.filter(item=>item.id!==action.payload)
             state.value.total = calculate_total_price(state.value.cartItems)
-            state.value.cartLenght -= 1
+            if(wasInCart){
+                state.value.cartLenght -= 1
+            }
 
         },
         clearCart: (state) => {

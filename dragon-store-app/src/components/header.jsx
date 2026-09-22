@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: colores.blanco,
+    color: colores.naranjaGoku,
   },
   access: {
     position: 'absolute',

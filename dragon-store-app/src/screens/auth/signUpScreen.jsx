@@ -5,29 +5,35 @@ import { useState, useEffect } from 'react';
 import { useSignupMutation } from '../../services/authService';
 import { setUser } from '../../features/authSlice';
 import { useDispatch } from 'react-redux';
+import { validationSchema } from '../../validations/validationsScheme';
 
 const textInputWidth = Dimensions.get('window').width * 0.7
-pepe
+
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [formError, setFormError] = useState("")
 
   const [triggerSignup, result] = useSignupMutation()
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (result.status === "rejected") {
-      console.log("Error al agregar el usuario", result)
+      setFormError("No pudimos crear la cuenta. Puede que el email ya esté en uso.")
     } else if (result.status === "fulfilled") {
-      console.log("Usuario agregado con éxito")
       dispatch(setUser(result.data))
     }
   }, [result])
 
-  const onsubmit = () => {
-    console.log(email, password, confirmPassword)
-    triggerSignup({ email, password })
+  const onsubmit = async () => {
+    try {
+      await validationSchema.validate({ email, password, confirmPassword })
+      setFormError("")
+      triggerSignup({ email, password })
+    } catch (validationError) {
+      setFormError(validationError.message)
+    }
   }
 
   return (
@@ -61,6 +67,7 @@ const SignupScreen = ({ navigation }) => {
           secureTextEntry
         />
       </View>
+      {formError ? <Text style={styles.errorText}>{formError}</Text> : null}
       <View style={styles.footTextContainer}>
         <Text style={styles.whiteText}>¿Ya tienes una cuenta?</Text>
         <Pressable onPress={() => navigation.navigate('Login')}>
@@ -74,7 +81,7 @@ const SignupScreen = ({ navigation }) => {
 
       <View style={styles.guestOptionContainer}>
         <Text style={styles.whiteText}>¿Solo quieres dar un vistazo?</Text>
-        <Pressable onPress={() => dispatch(setUser({ email: "demo@mundogeek.com", token: "demo" }))}>
+        <Pressable onPress={() => dispatch(setUser({ email: "demo@tiendadragon.com", idToken: "demo", localId: "guest" }))}>
           <Text style={{ ...styles.whiteText, ...styles.strongText }}>Ingresa como invitado</Text>
         </Pressable>
       </View>
@@ -122,6 +129,11 @@ const styles = StyleSheet.create({
   },
   whiteText: {
     color: colores.blancoCrema
+  },
+  errorText: {
+    color: colores.error,
+    textAlign: 'center',
+    marginHorizontal: 24,
   },
   underLineText: {
     textDecorationLine: 'underline',
