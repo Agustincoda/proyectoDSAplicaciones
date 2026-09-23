@@ -8,8 +8,9 @@ import AuthNavigator from "./authNavigator"
 
 import { useGetProfilePictureQuery } from "../services/userService"
 import { setProfilePicture, setUser } from "../features/authSlice"
+import { setTheme } from "../features/themeSlice"
 
-import { fetchSession } from "../db"
+import { fetchSession, fetchThemePreference } from "../db"
 
 const MainNavigator = () => {
     const user = useSelector((state) => state.authReducer.value.email)
@@ -50,6 +51,22 @@ const MainNavigator = () => {
             dispatch(setProfilePicture(profilePicture.image))
         }
     }, [profilePicture])
+
+    // Restaura el tema claro/oscuro guardado en SQLite (ver
+    // saveThemePreference en profileScreen.jsx), independiente de si
+    // hay o no una sesión iniciada.
+    useEffect(() => {
+        (async () => {
+            try {
+                const preference = await fetchThemePreference()
+                if (preference.length) {
+                    dispatch(setTheme(!!preference[0].isDark))
+                }
+            } catch (error) {
+                console.log("Error al obtener la preferencia de tema", error)
+            }
+        })()
+    }, [])
 
     return (
         <NavigationContainer>

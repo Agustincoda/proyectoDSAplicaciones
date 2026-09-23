@@ -2,16 +2,18 @@ import { configureStore } from '@reduxjs/toolkit'
 import shopReducer from '../features/shopSlice'
 import cartReducer from '../features/cartSlice'
 import authReducer from '../features/authSlice'
+import themeReducer from '../features/themeSlice'
 import { shopApi } from '../services/shopService'
 import { receiptApi } from '../services/receiptService'
 import { authApi } from '../services/authService'
 import { userApi } from '../services/userService'
 
 export const store = configureStore({
-  reducer: { 
+  reducer: {
       shopReducer,
       cartReducer,
       authReducer,
+      themeReducer,
       [shopApi.reducerPath] : shopApi.reducer,
       [receiptApi.reducerPath] : receiptApi.reducer,
       [authApi.reducerPath] : authApi.reducer,

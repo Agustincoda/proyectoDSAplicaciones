@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, FlatList, Image, Pressable, useWindowDimensions, ActivityIndicator } from 'react-native'
 import FlatCard from '../components/flatcard'
 import { useEffect, useState } from 'react'
-import { colores } from '../../global/colors'
+import { useColors } from '../hooks/useColors'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategory } from '../features/shopSlice'
 import { useGetCategoriesQuery } from '../services/shopService'
@@ -14,6 +14,8 @@ const CategoriesScreen = ({ navigation }) => {
     const { data: categories, error, isLoading } = useGetCategoriesQuery()
 
     const dispatch = useDispatch()
+    const colores = useColors();
+    const styles = getStyles(colores);
 
     useEffect(() => {
         setIsPortrait(width <= height)
@@ -47,12 +49,12 @@ const CategoriesScreen = ({ navigation }) => {
         <>
             {
                 isLoading
-                ? <ActivityIndicator size="large" color={colores.negro} />
+                ? <ActivityIndicator size="large" color={colores.textoPrincipal} />
                 : error
                 ? <Text style={styles.errorText}>Error al cargar las categorías</Text>
                 : <FlatList
                     data={categories}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item, index) => item ? item.id : index}
                     renderItem={renderCategoryItem}
                   />
             }
@@ -62,28 +64,30 @@ const CategoriesScreen = ({ navigation }) => {
 
 export default CategoriesScreen
 
-const styles = StyleSheet.create({
+const getStyles = (colores) => StyleSheet.create({
     categoryItemContainer: {
         justifyContent: "space-between",
         alignItems: "center",
-        marginHorizontal: 10,
-        marginVertical: 5,
-        padding: 20,
+        marginHorizontal: 12,
+        marginVertical: 8,
+        padding: 16,
+        borderRadius: 20,
         backgroundColor: colores.fondoCard,
     },
     categoryTitle: {
-        fontSize: 24,
-        fontWeight: "bold",
+        fontSize: 28,
+        fontWeight: "900",
         color: colores.celesteTitulos,
     },
     categoryTitleSmall: {
-        fontSize: 12,
-        fontWeight: "bold",
+        fontSize: 16,
+        fontWeight: "900",
         color: colores.celesteTitulos,
     },
     image: {
         width: 150,
-        height: 80,
+        height: 150,
+        borderRadius: 16,
     },
     row: {
         flexDirection: 'row',

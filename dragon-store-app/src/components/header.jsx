@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native'
-import { colores } from '../../global/colors'
+import { useColors } from '../hooks/useColors'
 import MontserratText from './montserratText'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,6 +9,8 @@ import { clearSessions } from '../db'
 const Header = ({ subtitle }) => {
   const user = useSelector((state) => state.authReducer.value.email)
   const dispatch = useDispatch()
+  const colores = useColors();
+  const styles = getStyles(colores);
 
   const onLogout = () => {
     dispatch(clearUser())
@@ -23,7 +25,7 @@ const Header = ({ subtitle }) => {
       <MontserratText style={styles.subtitle}>{subtitle}</MontserratText>
       {user && (
         <Pressable onPress={onLogout} style={styles.access}>
-          <Icon name="logout" size={16} color="#fff" />
+          <Icon name="logout" size={16} color={colores.textoPrincipal} />
         </Pressable>
       )}
     </View>
@@ -32,28 +34,33 @@ const Header = ({ subtitle }) => {
 
 export default Header
 
-const styles = StyleSheet.create({
+const getStyles = (colores) => StyleSheet.create({
   headerContainer: {
-    height: 150,
+    height: 72,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colores.blancoCrema,
+    backgroundColor: colores.fondoHeader,
+    shadowColor: colores.negro,
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
   },
   title: {
-    fontSize: 16,
+    fontSize: 11,
     fontWeight: 'bold',
     color: colores.bordoTitulos,
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '700',
     color: colores.naranjaGoku,
   },
   access: {
     position: 'absolute',
-    top: 10,
+    top: 12,
     right: 16,
   },
 })

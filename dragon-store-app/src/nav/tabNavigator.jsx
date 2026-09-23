@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { useSelector } from "react-redux";
 
 import ShopNavigator from "./shopNavigator";
 import CartNavigator from "./cartNavigator";
@@ -13,6 +14,7 @@ import { colores } from "../../global/colors";
 const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
+    const cartLength = useSelector(state => state.cartReducer.value.cartLenght)
     return (
           <Tab.Navigator 
               initialRouteName="Shop"
@@ -29,11 +31,13 @@ const TabNavigator = () => {
                       tabBarIcon: ({focused})=>(<Icon name="storefront" size={32} color={focused ? colores.negro : colores.bordoTitulos} />)
                   }}
               />
-              <Tab.Screen 
-                  name="Cart" 
-                  component={CartNavigator} 
+              <Tab.Screen
+                  name="Cart"
+                  component={CartNavigator}
                   options={{
-                      tabBarIcon: ({focused})=>(<Icon name="shopping-cart" size={32} color={focused ? colores.negro : colores.bordoTitulos} />)
+                      tabBarIcon: ({focused})=>(<Icon name="shopping-cart" size={32} color={focused ? colores.negro : colores.bordoTitulos} />),
+                      tabBarBadge: cartLength > 0 ? cartLength : undefined,
+                      tabBarBadgeStyle: styles.cartBadge
                   }}
               />
               <Tab.Screen 
@@ -61,6 +65,11 @@ const TabNavigator = () => {
       tabBar: {
           height: 64,
           backgroundColor: colores.naranjaGoku
+      },
+      cartBadge: {
+          backgroundColor: '#FF3B1F',
+          color: colores.blancoCrema,
+          fontWeight: '800',
       }
   });
   

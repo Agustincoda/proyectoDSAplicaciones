@@ -14,6 +14,7 @@ const textInputWidth = Dimensions.get('window').width * 0.7;
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [formError, setFormError] = useState("");
 
@@ -73,13 +74,21 @@ const LoginScreen = ({ navigation }) => {
                         placeholder="Email"
                         style={styles.textInput}
                     />
-                    <TextInput
-                        onChangeText={(text) => setPassword(text)}
-                        placeholderTextColor={colores.blancoCrema}
-                        placeholder="Password"
-                        style={styles.textInput}
-                        secureTextEntry
-                    />
+                    <View style={styles.passwordInputContainer}>
+                        <TextInput
+                            onChangeText={(text) => setPassword(text)}
+                            placeholderTextColor={colores.blancoCrema}
+                            placeholder="Password"
+                            style={styles.passwordTextInput}
+                            secureTextEntry={!showPassword}
+                        />
+                        <Pressable
+                            onPress={() => setShowPassword(!showPassword)}
+                            style={styles.eyeIcon}
+                        >
+                            <Icon name={showPassword ? 'visibility-off' : 'visibility'} size={22} color={colores.blancoCrema} />
+                        </Pressable>
+                    </View>
                 </View>
                 {formError ? <Text style={styles.errorText}>{formError}</Text> : null}
                 <View style={styles.rememberMeContainer}>
@@ -150,6 +159,22 @@ const styles = StyleSheet.create({
         backgroundColor: colores.bordoTitulos,
         width: textInputWidth,
         color: colores.blancoCrema,
+    },
+    passwordInputContainer: {
+        justifyContent: 'center',
+    },
+    passwordTextInput: {
+        padding: 8,
+        paddingLeft: 16,
+        paddingRight: 40,
+        borderRadius: 16,
+        backgroundColor: colores.bordoTitulos,
+        width: textInputWidth,
+        color: colores.blancoCrema,
+    },
+    eyeIcon: {
+        position: 'absolute',
+        right: 12,
     },
     footTextContainer: {
         flexDirection: 'row',

@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
-import { colores} from '../../global/colors'
+import { useColors } from '../hooks/useColors'
 import FlatCard from '../components/flatcard'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useState, useEffect } from 'react'
@@ -18,6 +18,8 @@ const CartScreen = ({ navigation }) => {
   const isGuest = useSelector(state => state.authReducer.value.token === 'demo')
 
   const dispatch = useDispatch()
+  const colores = useColors();
+  const styles = getStyles(colores);
 
   const FooterComponent = () => (
     <View style={styles.footerContainer}>
@@ -88,7 +90,7 @@ const CartScreen = ({ navigation }) => {
 
 export default CartScreen
 
-const styles = StyleSheet.create({
+const getStyles = (colores) => StyleSheet.create({
   cartContainer: {
     flexDirection: 'row',
     padding: 20,
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginBottom: 16,
-    color: colores.negro
+    color: colores.textoPrincipal
   },
   price: {
     color: colores.naranjaGoku
@@ -175,6 +177,6 @@ const styles = StyleSheet.create({
   },
   cartEmptyText: {
     fontSize: 16,
-    color: colores.negro
+    color: colores.textoPrincipal
   }
 });

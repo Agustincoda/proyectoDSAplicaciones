@@ -1,7 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import { colores } from "../../global/colors";
+import { useColors } from "../hooks/useColors";
 
 const FlatCard = ({ children, style }) => {
+    const colores = useColors();
+    const styles = getStyles(colores);
     return (
         <View style={{ ...styles.cardContainer, ...style }}>
             {children}
@@ -11,9 +13,9 @@ const FlatCard = ({ children, style }) => {
 
 export default FlatCard;
 
-const styles = StyleSheet.create({
+const getStyles = (colores) => StyleSheet.create({
     cardContainer: {
-        backgroundColor: colores.blancoCrema,
+        backgroundColor: colores.fondoCard,
         shadowColor: colores.negro,
         shadowOpacity: 1,
         shadowRadius: 1,

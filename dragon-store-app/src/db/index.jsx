@@ -33,8 +33,34 @@ export const fetchSession = () => {
 //FUNCION PELIGROSA:
 export const clearSessions= () => {
     const promise = new Promise((resolved,rejected)=>{
-        const query = "DELETE FROM sessions" 
+        const query = "DELETE FROM sessions"
         db.transaction(tx=>{tx.executeSql(query,[],(_, result)=>resolved(result),(_,error)=>rejected(error))})
+    })
+    return promise
+}
+
+// Fila única (id fijo en 1) para guardar preferencias de UI que tienen
+// que sobrevivir a que se cierre la app, como el tema claro/oscuro.
+export const createPreferencesTable = () => {
+    const promise = new Promise((resolved,rejected)=>{
+        const query = 'CREATE TABLE IF NOT EXISTS preferences (id INTEGER PRIMARY KEY CHECK (id = 1), isDark INTEGER NOT NULL)'
+        db.transaction(tx=>tx.executeSql(query,[],(_,result)=>resolved(result),(_,result)=>rejected(result)))
+    })
+    return promise
+}
+
+export const saveThemePreference = (isDark) => {
+    const promise = new Promise((resolved,rejected)=>{
+        const query = 'INSERT OR REPLACE INTO preferences (id, isDark) VALUES (1, ?)'
+        db.transaction(tx=>tx.executeSql(query,[isDark ? 1 : 0],(_,result)=>resolved(result),(_,result)=>rejected(result)))
+    })
+    return promise
+}
+
+export const fetchThemePreference = () => {
+    const promise = new Promise((resolved,rejected)=>{
+        const query = 'SELECT * FROM preferences WHERE id = 1'
+        db.transaction(tx=>tx.executeSql(query,[],(_,result)=>resolved(result.rows._array),(_,result)=>rejected(result)))
     })
     return promise
 }

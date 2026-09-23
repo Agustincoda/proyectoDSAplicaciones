@@ -1,11 +1,13 @@
 import { StyleSheet, Text, FlatList, ActivityIndicator, View } from 'react-native';
 import FlatCard from '../components/flatcard';
-import { colores } from '../../global/colors';
+import { useColors } from '../hooks/useColors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useGetReceiptsQuery } from '../services/receiptService';
 
 const ReceiptsScreen = () => {
   const { data: receipts, error, isLoading } = useGetReceiptsQuery();
+  const colores = useColors();
+  const styles = getStyles(colores);
 
   const renderReceiptItem = ({ item }) => {
     const dateOptions = {
@@ -54,7 +56,7 @@ const ReceiptsScreen = () => {
 
 export default ReceiptsScreen;
 
-const styles = StyleSheet.create({
+const getStyles = (colores) => StyleSheet.create({
   receiptContainer: {
     padding: 20,
     justifyContent: "flex-start",
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     color: colores.celesteTitulos,
   },
   date: {
-    color: colores.negro,
+    color: colores.textoPrincipal,
   },
   total: {
     fontSize: 16,
@@ -90,6 +92,6 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: colores.negro
+    color: colores.textoPrincipal
   }
 });

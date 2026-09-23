@@ -21,7 +21,6 @@ export const cartSlice = createSlice({
             const productInCart = state.value.cartItems.find(item=>item.id===action.payload.id)
             if(!productInCart){
                 state.value.cartItems.push(action.payload) //action.payload es el producto
-                state.value.cartLenght += 1
             }else{
                 state.value.cartItems.forEach(item=>{
                     if(item.id===action.payload.id){
@@ -31,22 +30,23 @@ export const cartSlice = createSlice({
             }
 
             const total = calculate_total_price(state.value.cartItems)
+            // cartLenght es la cantidad TOTAL de unidades (sumando
+            // cantidades), no la cantidad de productos distintos — así el
+            // contador del carrito refleja bien cuánto hay adentro.
+            const cartLenght = state.value.cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
             state.value = {
                 ...state.value,
                 total,
+                cartLenght,
                 updatedAt: new Date().toLocaleString()
             }
 
         },
         removeItem: (state,action)=>{
-            const wasInCart = state.value.cartItems.some(item=>item.id===action.payload)
             state.value.cartItems = state.value.cartItems.filter(item=>item.id!==action.payload)
             state.value.total = calculate_total_price(state.value.cartItems)
-            if(wasInCart){
-                state.value.cartLenght -= 1
-            }
-
+            state.value.cartLenght = state.value.cartItems.reduce((sum, item) => sum + item.quantity, 0)
         },
         clearCart: (state) => {
             state.value.cartItems=[]

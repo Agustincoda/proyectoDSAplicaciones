@@ -8,7 +8,7 @@ import MainNavigator from './src/nav/mainNavigator';
 
 import { store } from './src/components/store';
 import { Provider } from 'react-redux';
-import { createSessionsTable } from './src/db';
+import { createSessionsTable, createPreferencesTable } from './src/db';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -23,6 +23,7 @@ export default function App() {
   // componente raíz, en vez de en la pantalla de login.
   useEffect(() => {
     createSessionsTable().catch((tableError) => console.log("Error al crear la tabla de sesiones", tableError));
+    createPreferencesTable().catch((tableError) => console.log("Error al crear la tabla de preferencias", tableError));
   }, []);
 
   useEffect(() => {

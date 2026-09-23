@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View, Image, Pressable, ActivityIndicator } from 'react-native';
 import FlatCard from '../components/flatcard';
-import { colores } from '../../global/colors';
+import { useColors } from '../hooks/useColors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Search from '../components/search';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,9 +11,11 @@ import { setProductId } from '../features/shopSlice';
 const ProductsScreen = ({ navigation }) => {
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [search, setSearch] = useState("");
-    
+
     const category = useSelector(state => state.shopReducer.value.categorySelected);
     const dispatch = useDispatch();
+    const colores = useColors();
+    const styles = getStyles(colores);
 
     const { data: productsFilteredByCategory, error, isLoading } = useGetProductsByCategoryQuery(category);
 
@@ -44,16 +46,16 @@ const ProductsScreen = ({ navigation }) => {
             navigation.navigate("Producto");
         }}>
             <FlatCard style={styles.productContainer}>
-                <View>
+                <View style={styles.productImageContainer}>
                     <Image
-                        source={{ uri: item.Imagen }} // Ajuste aquí
+                        source={{ uri: item.Imagen }}
                         style={styles.productImage}
                         resizeMode="contain"
                     />
                 </View>
                 <View style={styles.productDescription}>
-                    <Text style={styles.productTitle}>{item.nombre}</Text> {/* Ajuste aquí */}
-                    <Text style={styles.shortDescription}>{item.Descripcion}</Text> {/* Ajuste aquí */}
+                    <Text style={styles.productTitle}>{item.nombre}</Text>
+                    <Text style={styles.shortDescription}>{item.Descripcion}</Text>
                     <View style={styles.tags}>
                         <Text style={styles.tagText}>Tags: </Text>
                         <FlatList
@@ -65,11 +67,12 @@ const ProductsScreen = ({ navigation }) => {
                     </View>
                     {item.Descuento > 0 && (
                         <View style={styles.discount}>
-                            <Text style={styles.discountText}>Descuento {item.Descuento}%</Text>
+                            <Icon name="whatshot" size={16} color={colores.blancoCrema} />
+                            <Text style={styles.discountText}>{item.Descuento}% OFF</Text>
                         </View>
                     )}
                     {item.Stock <= 0 && <Text style={styles.noStockText}>Sin Stock</Text>}
-                    <Text style={styles.price}>Precio: $ {item.Precio}</Text> {/* Ajuste aquí */}
+                    <Text style={styles.price}>Precio: $ {item.Precio}</Text>
                 </View>
             </FlatCard>
         </Pressable>
@@ -100,7 +103,7 @@ const ProductsScreen = ({ navigation }) => {
 
 export default ProductsScreen;
 
-const styles = StyleSheet.create({
+const getStyles = (colores) => StyleSheet.create({
     productContainer: {
         flexDirection: 'row',
         padding: 20,
@@ -109,9 +112,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
         gap: 10
     },
-    productImage: {
+    productImageContainer: {
         width: 100,
-        height: 100
+        height: 100,
+        backgroundColor: colores.fondoPantalla,
+        borderRadius: 12,
+        overflow: 'hidden',
+    },
+    productImage: {
+        width: '100%',
+        height: '100%'
     },
     productDescription: {
         width: "80%",
@@ -125,7 +135,7 @@ const styles = StyleSheet.create({
         color: colores.bordoTitulos
     },
     shortDescription: {
-        color: colores.negro
+        color: colores.textoPrincipal
     },
     tags: {
         flexDirection: 'row',
@@ -134,7 +144,7 @@ const styles = StyleSheet.create({
     tagText: {
         fontWeight: '600',
         fontSize: 12,
-        color: colores.negro
+        color: colores.textoPrincipal
     },
     price: {
         fontWeight: '800',
@@ -142,19 +152,26 @@ const styles = StyleSheet.create({
         color: colores.naranjaGoku
     },
     discount: {
-        backgroundColor: colores.naranjaGoku,
-        padding: 8,
-        borderRadius: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+        backgroundColor: '#FF3B1F',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderRadius: 16,
         alignSelf: 'flex-start'
     },
     discountText: {
-        color: colores.blancoCrema
+        color: colores.blancoCrema,
+        fontWeight: '800',
+        fontSize: 13,
     },
     noStockText: {
-        color: 'red'
+        color: colores.error,
+        fontWeight: '700',
     },
     goBack: {
         padding: 10,
-        color: colores.negro
+        color: colores.textoPrincipal
     }
 });

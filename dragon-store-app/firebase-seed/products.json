@@ -1,0 +1,233 @@
+{
+  "1": {
+    "id": 1,
+    "nombre": "Remera Goku Ultra Instinto",
+    "Descripcion": "Remera estampada de Goku en su forma Ultra Instinto. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.739255099.9049/ssrco,oversize_tee,womens,000000:44f0b734a5,front,product_square,x600.1u1.jpg",
+    "Categoria": "Remeras",
+    "Tags": ["Goku", "Ultra Instinto", "Saiyajin"],
+    "Descuento": 0,
+    "Stock": 12,
+    "Precio": 18500
+  },
+  "2": {
+    "id": 2,
+    "nombre": "Remera Dragon Ball Anime y Manga",
+    "Descripcion": "Diseño clásico inspirado en el anime y manga de Dragon Ball. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.4937175023.0684/ssrco,classic_tee,mens_02,101010:01c5ca27c6,front,product_square,x600.jpg",
+    "Categoria": "Remeras",
+    "Tags": ["Anime", "Manga", "Clasica"],
+    "Descuento": 10,
+    "Stock": 8,
+    "Precio": 16900
+  },
+  "3": {
+    "id": 3,
+    "nombre": "Remera Son Goku Saiyan Warrior",
+    "Descripcion": "Remera premium con ilustración de Son Goku, el guerrero Saiyajin. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6228366838.1740/ssrco,premium_tee,mens_01,101010:01c5ca27c6,front,square_product,x600.1.jpg",
+    "Categoria": "Remeras",
+    "Tags": ["Goku", "Saiyajin", "Premium"],
+    "Descuento": 0,
+    "Stock": 5,
+    "Precio": 21500
+  },
+  "4": {
+    "id": 4,
+    "nombre": "Remera Nube Voladora",
+    "Descripcion": "Remera con la icónica Nube Voladora (Kinton) de Goku. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.2489490722.2656/ssrco,classic_tee,womens_02,fafafa:ca443f4786,front,product_square,x600.1.jpg",
+    "Categoria": "Remeras",
+    "Tags": ["Nube Voladora", "Goku"],
+    "Descuento": 0,
+    "Stock": 0,
+    "Precio": 15900
+  },
+  "5": {
+    "id": 5,
+    "nombre": "Remera Kakacarrot",
+    "Descripcion": "Remera con diseño humorístico inspirado en el nombre Saiyajin de Goku, Kakarot. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.2715804073.9511/ssrco,classic_tee,mens_02,fafafa:ca443f4786,front,product_square,x600.u1.jpg",
+    "Categoria": "Remeras",
+    "Tags": ["Kakarot", "Humor", "Goku"],
+    "Descuento": 20,
+    "Stock": 15,
+    "Precio": 14500
+  },
+  "6": {
+    "id": 6,
+    "nombre": "Buzo Nube Voladora",
+    "Descripcion": "Buzo liviano con estampa de la Nube Voladora de Goku. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.3951350742.4434/ssrco,lightweight_sweatshirt,mens_01,heather_dark_grey,front,square_product,x600.jpg",
+    "Categoria": "Buzos",
+    "Tags": ["Nube Voladora", "Goku", "Liviano"],
+    "Descuento": 0,
+    "Stock": 10,
+    "Precio": 27500
+  },
+  "7": {
+    "id": 7,
+    "nombre": "Buzo Vegeta Príncipe Saiyajin",
+    "Descripcion": "Buzo oversized con ilustración de Vegeta, el Príncipe de los Saiyajin. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6228371618.1909/ssrco,oversized_sweatshirt,mens_01,111112:1f01311efe,front,square_product,x600.jpg",
+    "Categoria": "Buzos",
+    "Tags": ["Vegeta", "Saiyajin", "Oversized"],
+    "Descuento": 15,
+    "Stock": 7,
+    "Precio": 29900
+  },
+  "8": {
+    "id": 8,
+    "nombre": "Buzo Broly Super Saiyajin Legendario",
+    "Descripcion": "Buzo oversized con estampa de Broly, el Super Saiyajin Legendario. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6230160196.1142/ssrco,oversized_sweatshirt,womens_01,111112:1f01311efe,front,square_product,x600.jpg",
+    "Categoria": "Buzos",
+    "Tags": ["Broly", "Legendario", "Oversized"],
+    "Descuento": 0,
+    "Stock": 4,
+    "Precio": 31900
+  },
+  "9": {
+    "id": 9,
+    "nombre": "Buzo con Capucha Krillin",
+    "Descripcion": "Buzo con capucha, diseño humorístico inspirado en Krillin. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6237917326.0589/ssrco,oversized_hoodie,womens_01,111112:1f01311efe,front,square_product,x600.jpg",
+    "Categoria": "Buzos",
+    "Tags": ["Krillin", "Humor", "Capucha"],
+    "Descuento": 0,
+    "Stock": 0,
+    "Precio": 28900
+  },
+  "10": {
+    "id": 10,
+    "nombre": "Anillo Goku Black Time",
+    "Descripcion": "Anillo de plata de ley inspirado en el Anillo del Tiempo de Goku Black. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/66666087/r/il/a3538f/8535222519/il_255x319.8535222519_3puq.jpg",
+    "Categoria": "Anillos",
+    "Tags": ["Goku Black", "Plata", "Anillo del Tiempo"],
+    "Descuento": 0,
+    "Stock": 6,
+    "Precio": 32000
+  },
+  "11": {
+    "id": 11,
+    "nombre": "Anillo Dragón de Cuatro Estrellas",
+    "Descripcion": "Anillo dorado inspirado en las Esferas del Dragón, con detalle de cuatro estrellas. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/16194078/r/il/0c9eaa/3616854630/il_255x319.3616854630_a56v.jpg",
+    "Categoria": "Anillos",
+    "Tags": ["Esfera del Dragon", "Dorado"],
+    "Descuento": 10,
+    "Stock": 9,
+    "Precio": 24500
+  },
+  "12": {
+    "id": 12,
+    "nombre": "Anillo Eterno del Dragón",
+    "Descripcion": "Anillo del Tiempo del Dragón Eterno, fundido en plata de ley. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/17694763/r/il/da8cb6/3943011036/il_255x319.3943011036_rbqb.jpg",
+    "Categoria": "Anillos",
+    "Tags": ["Shenron", "Plata", "Eterno"],
+    "Descuento": 0,
+    "Stock": 3,
+    "Precio": 35000
+  },
+  "13": {
+    "id": 13,
+    "nombre": "Anillo Infinito Dragon Ball",
+    "Descripcion": "Anillo cruzado con baño de oro, inspirado en Dragon Ball. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/48720155/r/il/955a48/8148499913/il_255x319.8148499913_3tns.jpg",
+    "Categoria": "Anillos",
+    "Tags": ["Infinito", "Oro"],
+    "Descuento": 0,
+    "Stock": 12,
+    "Precio": 22000
+  },
+  "14": {
+    "id": 14,
+    "nombre": "Medias Logo Dragon Ball Z",
+    "Descripcion": "Medias con el logo clásico de Dragon Ball Z. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6231334063.1016/ur,socks_flatlay_01,square,600x600.jpg",
+    "Categoria": "Medias",
+    "Tags": ["Logo", "Clasica"],
+    "Descuento": 0,
+    "Stock": 20,
+    "Precio": 8900
+  },
+  "15": {
+    "id": 15,
+    "nombre": "Medias DB Logo",
+    "Descripcion": "Medias con estampado del logo DB. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.1824480421.1787/ur,socks_flatlay_01,square,600x600.jpg",
+    "Categoria": "Medias",
+    "Tags": ["Logo", "DB"],
+    "Descuento": 20,
+    "Stock": 18,
+    "Precio": 7900
+  },
+  "16": {
+    "id": 16,
+    "nombre": "Medias Goku Super Saiyajin",
+    "Descripcion": "Medias con arte de Goku en su transformación Super Saiyajin. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6229058274.5235/ur,socks_flatlay_01,square,600x600.jpg",
+    "Categoria": "Medias",
+    "Tags": ["Goku", "Super Saiyajin"],
+    "Descuento": 0,
+    "Stock": 15,
+    "Precio": 8900
+  },
+  "17": {
+    "id": 17,
+    "nombre": "Medias Gohan Bestia",
+    "Descripcion": "Medias con arte gráfico de Son Gohan en su forma Bestia. Producto de prueba.",
+    "Imagen": "https://ih1.redbubble.net/image.6226591838.2635/ur,socks_flatlay_01,square,600x600.jpg",
+    "Categoria": "Medias",
+    "Tags": ["Gohan", "Anime"],
+    "Descuento": 0,
+    "Stock": 0,
+    "Precio": 8900
+  },
+  "18": {
+    "id": 18,
+    "nombre": "Figura Vegeta Super Saiyajin Blue",
+    "Descripcion": "Figura coleccionable de Vegeta Super Saiyajin Blue, 26,5 cm. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/64238585/r/il/d1e191/8523340020/il_255x319.8523340020_6gul.jpg",
+    "Categoria": "Coleccionables",
+    "Tags": ["Vegeta", "Super Saiyajin Blue", "Figura"],
+    "Descuento": 0,
+    "Stock": 4,
+    "Precio": 55000
+  },
+  "19": {
+    "id": 19,
+    "nombre": "Estatua Broly Legendario",
+    "Descripcion": "Estatua coleccionable de PVC de Broly, el Super Saiyajin Legendario, 50 cm. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/45100292/r/il/97c6b3/7661089306/il_255x319.7661089306_j4hn.jpg",
+    "Categoria": "Coleccionables",
+    "Tags": ["Broly", "Legendario", "Estatua"],
+    "Descuento": 0,
+    "Stock": 2,
+    "Precio": 89000
+  },
+  "20": {
+    "id": 20,
+    "nombre": "Figura Shenron y Goku",
+    "Descripcion": "Figura coleccionable de PVC de Shenron junto a Goku. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/65418543/r/il/27828c/7893873982/il_255x319.7893873982_irmb.jpg",
+    "Categoria": "Coleccionables",
+    "Tags": ["Shenron", "Goku", "Figura"],
+    "Descuento": 15,
+    "Stock": 6,
+    "Precio": 42000
+  },
+  "21": {
+    "id": 21,
+    "nombre": "Figura Goku Ultra Instinto",
+    "Descripcion": "Figura coleccionable de Goku Ultra Instinto, 35 cm, con cabeza intercambiable. Producto de prueba.",
+    "Imagen": "https://i.etsystatic.com/67655626/r/il/742214/8501505334/il_255x319.8501505334_b9pu.jpg",
+    "Categoria": "Coleccionables",
+    "Tags": ["Goku", "Ultra Instinto", "Figura"],
+    "Descuento": 0,
+    "Stock": 3,
+    "Precio": 67000
+  }
+}
