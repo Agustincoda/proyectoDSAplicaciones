@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View, Image, Pressable, ActivityIndicator } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Pressable, ActivityIndicator } from 'react-native';
 import FlatCard from '../components/flatcard';
+import FallbackImage from '../components/fallbackImage';
 import { useColors } from '../hooks/useColors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Search from '../components/search';
@@ -20,18 +21,14 @@ const ProductsScreen = ({ navigation }) => {
     const { data: productsFilteredByCategory, error, isLoading } = useGetProductsByCategoryQuery(category);
 
     useEffect(() => {
-        console.log("Categoría seleccionada:", category);
-        console.log("Productos filtrados por categoría (desde Firebase):", productsFilteredByCategory);
-    
         // Filtra elementos nulos en los productos obtenidos
         const validProducts = (productsFilteredByCategory || []).filter(product => product !== null);
-    
+
         // Filtra según la búsqueda si hay algún término de búsqueda
         if (search) {
             const filteredProducts = validProducts.filter(product =>
                 product.nombre.toLowerCase().includes(search.toLowerCase())
             );
-            console.log("Productos filtrados por búsqueda:", filteredProducts);
             setProductsFiltered(filteredProducts);
         } else {
             setProductsFiltered(validProducts);
@@ -47,8 +44,8 @@ const ProductsScreen = ({ navigation }) => {
         }}>
             <FlatCard style={styles.productContainer}>
                 <View style={styles.productImageContainer}>
-                    <Image
-                        source={{ uri: item.Imagen }}
+                    <FallbackImage
+                        uri={item.Imagen}
                         style={styles.productImage}
                         resizeMode="contain"
                     />
@@ -83,7 +80,7 @@ const ProductsScreen = ({ navigation }) => {
             {isLoading ? (
                 <ActivityIndicator size="large" color={colores.naranjaGoku} />
             ) : error ? (
-                <Text>Error al cargar las categorías</Text>
+                <Text style={styles.errorText}>Error al cargar los productos</Text>
             ) : (
                 <>
                     <Pressable onPress={() => navigation.goBack()}>
@@ -173,5 +170,11 @@ const getStyles = (colores) => StyleSheet.create({
     goBack: {
         padding: 10,
         color: colores.textoPrincipal
+    },
+    errorText: {
+        color: colores.error,
+        fontSize: 16,
+        textAlign: 'center',
+        marginVertical: 10,
     }
 });

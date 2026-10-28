@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, Pressable, useWindowDimensions, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Pressable, useWindowDimensions, ScrollView, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import FallbackImage from '../components/fallbackImage';
 import { useColors } from '../hooks/useColors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useRef } from 'react';
@@ -45,9 +46,8 @@ const ProductScreen = ({ navigation }) => {
                             </Pressable>
                             <Text style={styles.textTitle}>{item.nombre}</Text>
                             <View style={styles.imageContainer}>
-                                <Image
-                                    source={{ uri: item.Imagen }}
-                                    alt={item.nombre}
+                                <FallbackImage
+                                    uri={item.Imagen}
                                     style={styles.image}
                                     resizeMode='contain'
                                 />

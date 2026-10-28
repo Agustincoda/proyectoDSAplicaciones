@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, FlatList, Image, Pressable, useWindowDimensions, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Pressable, useWindowDimensions, ActivityIndicator } from 'react-native'
 import FlatCard from '../components/flatcard'
+import FallbackImage from '../components/fallbackImage'
 import { useEffect, useState } from 'react'
 import { useColors } from '../hooks/useColors'
 import { useSelector, useDispatch } from 'react-redux'
@@ -32,8 +33,8 @@ const CategoriesScreen = ({ navigation }) => {
                         ? { ...styles.categoryItemContainer, ...styles.row }
                         : { ...styles.categoryItemContainer, ...styles.rowReverse }
                 }>
-                    <Image
-                        source={{ uri: item.image }}
+                    <FallbackImage
+                        uri={item.image}
                         style={styles.image}
                         resizeMode='contain'
                     />
