@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Pressable, Dimensions, Platform, KeyboardAvoidingView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { colores } from '../../../global/colors'
 import { useState, useEffect } from 'react';
@@ -40,12 +40,16 @@ const SignupScreen = ({ navigation }) => {
   }
 
   return (
-    <LinearGradient
-      colors={['#400962', '#11001B']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.gradient}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
     >
+      <LinearGradient
+        colors={['#400962', '#11001B']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.gradient}
+      >
       <Text style={styles.title}>Tienda Del Dragon</Text>
       <Text style={styles.subTitle}>Registrate</Text>
       <View style={styles.inputContainer}>
@@ -104,13 +108,17 @@ const SignupScreen = ({ navigation }) => {
           <Text style={{ ...styles.whiteText, ...styles.strongText }}>Ingresa como invitado</Text>
         </Pressable>
       </View>
-    </LinearGradient>
+      </LinearGradient>
+    </KeyboardAvoidingView>
   )
 }
 
 export default SignupScreen
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   gradient: {
     flex: 1,
     justifyContent: 'center',
