@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Pressable,Image } from 'react-native'
+import { useState } from 'react'
 import { useColors } from '../hooks/useColors'
 import CameraIcon from '../components/cameraIcon'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -23,6 +24,7 @@ const ProfileScreen = () => {
     const styles = getStyles(colores);
 
     const [triggerPutProfilePicture,result] = usePutProfilePictureMutation()
+    const [photoError, setPhotoError] = useState("")
 
     const verifyCameraPermissions = async () => {
         const {granted} = await ImagePicker.requestCameraPermissionsAsync()
@@ -32,25 +34,36 @@ const ProfileScreen = () => {
 
     const pickImage = async () =>{
         const permissionOk = await verifyCameraPermissions()
-        if(permissionOk){
-     
-            let result = await ImagePicker.launchCameraAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [1,1],
-                base64: true,
-                quality: 0.7
-            })
-       
-            if(!result.canceled){
-                dispatch(setProfilePicture(`data:image/jpeg;base64,${result.assets[0].base64}`))
-                triggerPutProfilePicture({image: `data:image/jpeg;base64,${result.assets[0].base64}`,localId})
-            }
-        }else{
-            //console.log("Permisos denegados")
+        if(!permissionOk){
+            setPhotoError("Necesitamos permiso de cámara para sacar la foto.")
+            return
+        }
+
+        const pickerResult = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [1,1],
+            base64: true,
+            quality: 0.7
+        })
+
+        if(pickerResult.canceled) return
+
+        const previousImage = image
+        const newImage = `data:image/jpeg;base64,${pickerResult.assets[0].base64}`
+        setPhotoError("")
+        dispatch(setProfilePicture(newImage))
+        try {
+            // Espera que Firebase confirme el guardado: si falla, se
+            // vuelve a la foto anterior en vez de dejar al usuario
+            // creyendo que la nueva quedó guardada.
+            await triggerPutProfilePicture({ image: newImage, localId }).unwrap()
+        } catch (error) {
+            dispatch(setProfilePicture(previousImage))
+            setPhotoError("No pudimos guardar tu foto de perfil. Probá de nuevo.")
         }
     }
-    
+
     return (
         <View style={styles.profileContainer}>
             <View style={styles.imageProfileContainer}>
@@ -59,7 +72,7 @@ const ProfileScreen = () => {
                         ?
                         <Image source={{ uri: image }} resizeMode='cover' style={styles.profileImage} />
                         :
-                        <Text style={styles.textProfilePlaceHolder}>{user.charAt(0).toUpperCase()}</Text>
+                        <Text style={styles.textProfilePlaceHolder}>{(user || "?").charAt(0).toUpperCase()}</Text>
                 }
                 {!isGuest && (
                     <Pressable onPress={pickImage} style={({ pressed }) => [{ opacity: pressed ? 0.90 : 1 }, styles.cameraIcon]} >
@@ -69,11 +82,15 @@ const ProfileScreen = () => {
             </View>
             <Text style={styles.profileData}>Email: {user}</Text>
             {isGuest && <Text style={styles.guestNotice}>Iniciá sesión con una cuenta para poder subir una foto</Text>}
+            {photoError ? <Text style={styles.guestNotice}>{photoError}</Text> : null}
             <View style={styles.themeToggleContainer}>
                 <Text style={styles.themeToggleText}>Modo oscuro</Text>
                 <Pressable onPress={() => {
                     dispatch(toggleTheme())
-                    saveThemePreference(!isDark).catch(error => console.log("Error al guardar la preferencia de tema", error))
+                    // Mejor esfuerzo: si no se puede guardar, el tema
+                    // vuelve a su valor por defecto la próxima vez que
+                    // se abra la app, pero el cambio actual funciona igual.
+                    saveThemePreference(!isDark).catch(() => {})
                 }}>
                     <Icon name={isDark ? 'toggle-on' : 'toggle-off'} size={48} color={isDark ? colores.naranjaGoku : colores.grisOscuro} />
                 </Pressable>
