@@ -23,21 +23,19 @@ const LoginScreen = ({ navigation }) => {
 
     useEffect(() => {
         if (result.isSuccess) {
-            console.log("Usuario logueado con éxito");
             dispatch(setUser(result.data));
 
             if (rememberMe) {
+                // Mejor esfuerzo: si esto falla, "mantener sesión
+                // iniciada" simplemente no sobrevive a cerrar la app,
+                // pero el login en curso ya funcionó.
                 clearSessions()
-                    .then(() => console.log("Sesiones eliminadas"))
-                    .catch(error => console.log("Error al eliminar las sesiones: ", error));
-
-                insertSession({
-                    localId: result.data.localId,
-                    email: result.data.email,
-                    token: result.data.idToken
-                })
-                    .then(res => console.log("Usuario insertado con éxito", res))
-                    .catch(error => console.log("Error al insertar usuario", error));
+                    .then(() => insertSession({
+                        localId: result.data.localId,
+                        email: result.data.email,
+                        token: result.data.idToken
+                    }))
+                    .catch(() => {});
             }
         } else if (result.isError) {
             setFormError("No pudimos iniciar sesión. Revisá tu email y contraseña.");

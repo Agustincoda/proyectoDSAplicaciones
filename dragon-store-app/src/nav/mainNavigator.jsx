@@ -40,7 +40,8 @@ const MainNavigator = () => {
                         }))
                     }
                 } catch (error) {
-                    console.log("Error al obtener la sesión", error)
+                    // Sin sesión guardada (o SQLite no disponible todavía):
+                    // se muestra el login normalmente.
                 }
             })()
         }
@@ -63,7 +64,7 @@ const MainNavigator = () => {
                     dispatch(setTheme(!!preference[0].isDark))
                 }
             } catch (error) {
-                console.log("Error al obtener la preferencia de tema", error)
+                // Sin preferencia guardada: se usa el tema claro por defecto.
             }
         })()
     }, [])
