@@ -1,7 +1,8 @@
-import { FlatList, StyleSheet, Text, View, Image, Pressable } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 import { useColors } from '../hooks/useColors'
 import FlatCard from '../components/flatcard'
+import FallbackImage from '../components/fallbackImage'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,10 +17,26 @@ const CartScreen = ({ navigation }) => {
   // Los recibos requieren "auth != null" en las reglas de Firebase, y el
   // usuario invitado no tiene un idToken real, así que no puede confirmar.
   const isGuest = useSelector(state => state.authReducer.value.token === 'demo')
+  const [checkoutError, setCheckoutError] = useState("")
 
   const dispatch = useDispatch()
   const colores = useColors();
   const styles = getStyles(colores);
+
+  const handleConfirm = async () => {
+    try {
+      setCheckoutError("")
+      // Espera la confirmación de Firebase antes de vaciar el carrito:
+      // si el POST falla (sin conexión, reglas, etc.) el usuario se
+      // queda con su carrito intacto en vez de perderlo sin que la
+      // compra se haya guardado.
+      await triggerPost({ cart, total, createdAt: Date.now() }).unwrap()
+      dispatch(clearCart())
+      navigation.navigate("Receipts")
+    } catch (error) {
+      setCheckoutError("No pudimos confirmar la compra. Probá de nuevo en un momento.")
+    }
+  }
 
   const FooterComponent = () => (
     <View style={styles.footerContainer}>
@@ -27,16 +44,16 @@ const CartScreen = ({ navigation }) => {
       {isGuest ? (
         <Text style={styles.guestNotice}>Iniciá sesión con una cuenta para poder confirmar la compra</Text>
       ) : (
-        <Pressable
-          style={styles.confirmButton}
-          onPress={() => {
-            triggerPost({ cart, total, createdAt: Date.now() })
-            dispatch(clearCart())
-            navigation.navigate("Receipts")
-          }}
-        >
-          <Text style={styles.confirmButtonText}>Confirmar</Text>
-        </Pressable>
+        <>
+          {checkoutError ? <Text style={styles.guestNotice}>{checkoutError}</Text> : null}
+          <Pressable
+            style={[styles.confirmButton, result.isLoading && styles.confirmButtonDisabled]}
+            disabled={result.isLoading}
+            onPress={handleConfirm}
+          >
+            <Text style={styles.confirmButtonText}>{result.isLoading ? 'Confirmando...' : 'Confirmar'}</Text>
+          </Pressable>
+        </>
       )}
     </View>
   )
@@ -44,8 +61,8 @@ const CartScreen = ({ navigation }) => {
   const renderCartItem = ({ item }) => (
     <FlatCard style={styles.cartContainer}>
       <View>
-        <Image
-          source={{ uri: item.mainImage }}
+        <FallbackImage
+          uri={item.mainImage}
           style={styles.cartImage}
           resizeMode='cover'
         />
@@ -150,6 +167,9 @@ const getStyles = (colores) => StyleSheet.create({
     backgroundColor: colores.bordoTitulos,
     borderRadius: 16,
     marginBottom: 24,
+  },
+  confirmButtonDisabled: {
+    opacity: 0.6,
   },
   confirmButtonText: {
     color: colores.blancoCrema,
