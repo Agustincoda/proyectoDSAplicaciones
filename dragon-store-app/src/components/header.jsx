@@ -4,7 +4,10 @@ import MontserratText from './montserratText'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearUser } from '../features/authSlice'
+import { clearCart } from '../features/cartSlice'
 import { clearSessions } from '../db'
+import { receiptApi } from '../services/receiptService'
+import { userApi } from '../services/userService'
 
 const Header = ({ subtitle }) => {
   const user = useSelector((state) => state.authReducer.value.email)
@@ -14,9 +17,14 @@ const Header = ({ subtitle }) => {
 
   const onLogout = () => {
     dispatch(clearUser())
-    clearSessions()
-      .then(() => console.log("Sesión eliminada"))
-      .catch((error) => console.log("Error al eliminar la sesión"))
+    // El carrito y las cachés de recibos/foto de perfil son por usuario:
+    // sin esto, si otra persona inicia sesión en el mismo dispositivo
+    // sin cerrar la app, vería (al menos momentáneamente) los datos de
+    // la sesión anterior.
+    dispatch(clearCart())
+    dispatch(receiptApi.util.resetApiState())
+    dispatch(userApi.util.resetApiState())
+    clearSessions().catch(() => {})
   }
 
   return (
